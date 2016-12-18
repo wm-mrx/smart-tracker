@@ -1,5 +1,8 @@
 "use strict";
 const express = require("express");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const path = require("path");
 const sequelize = require("sequelize");
 const configurator = require("./models/Configurator");
 const config_1 = require("./utils/config");
@@ -12,6 +15,30 @@ global['db'] = db;
 global['models'] = models;
 if (config_1.default('auto_generate'))
     configurator.synchronize(models, true);
+app.use(session({ secret: config_1.default('secret'), saveUninitialized: true, resave: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/smartracker/', express.static(path.join(__dirname, 'public')));
+app.use('/smartracker/modules', express.static(path.join(__dirname, '/node_modules/')));
+app.use('/smartracker/js', express.static(path.join(__dirname, '/public/js/')));
+app.use('/smartracker/app', express.static(path.join(__dirname, '/public/scripts/')));
+app.use('/smartracker/css', express.static(path.join(__dirname, '/public/css/')));
+app.listen(config_1.default('port'), (error) => {
+    console.log('Smart Tracker is running on port %s', config_1.default('port'));
+    console.log('Smart Tracker DB is running');
+});
+app.get('/smartracker', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+});
+app.get('/smartracker/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+});
+app.get('/smartracker/client', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+});
+app.get('/smartracker/monitoring', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+});
 const Server_1 = require("./core/Server");
 var core = new Server_1.default(app);
 core.startClient(clientPort);

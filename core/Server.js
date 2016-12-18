@@ -27,12 +27,16 @@ class Server {
                 });
                 socket.pipe(socket);
             });
-            server.listen(port);
+            server.listen(port, () => {
+                console.log('Device server is running on port %s', port);
+            });
         });
     }
     startClient(port) {
         this.io.on('connection', (socket) => { });
-        this.clientServer.listen(port);
+        this.clientServer.listen(port, () => {
+            console.log('Client server is running on port %s', port);
+        });
     }
     authenticateDevice(serial, socket) {
         ClientController_1.default.findByDeviceSerial(serial).then(res => {

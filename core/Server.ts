@@ -36,14 +36,18 @@ export default class Server {
                 socket.pipe(socket);
             });
 
-            server.listen(port);
+            server.listen(port, () => {
+                console.log('Device server is running on port %s', port);
+            });
         });
     }
 
     startClient(port): void {
         this.io.on('connection', (socket) => {});
 
-        this.clientServer.listen(port);
+        this.clientServer.listen(port, () => {
+            console.log('Client server is running on port %s', port);
+        });
     }
 
     authenticateDevice(serial: string, socket): void {
