@@ -1,7 +1,7 @@
 ﻿import { Router } from 'express';
 import config from '../utils/config';
 import Controller from '../controllers/DeviceController';
-import auth from '../utils/Auth';
+import auth from '../utils/auth';
 
 var router = Router();
 var url = config('service_url');
