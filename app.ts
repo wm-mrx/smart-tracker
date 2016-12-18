@@ -50,6 +50,8 @@ app.get('/smartracker/monitoring', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/Views/index.html'));
 });
 
+import userRoutes from './routes/UserRoutes';
+
 import Server from './core/Server';
 
 var core = new Server(app);

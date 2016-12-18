@@ -149,6 +149,7 @@
     <TypeScriptCompile Include="public\scripts\models\User.ts" />
     <TypeScriptCompile Include="public\scripts\Services.ts" />
     <TypeScriptCompile Include="public\scripts\SmartTracker.ts" />
+    <TypeScriptCompile Include="routes\ClientRoutes.ts" />
     <TypeScriptCompile Include="routes\UserRoutes.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bluebird\bluebird-2.0.d.ts" />
