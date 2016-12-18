@@ -58,6 +58,7 @@
     <TypeScriptCompile Include="models\Device.ts" />
     <TypeScriptCompile Include="models\Instance.ts" />
     <TypeScriptCompile Include="models\Model.ts" />
+    <TypeScriptCompile Include="models\Position.ts" />
     <TypeScriptCompile Include="models\User.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bluebird\bluebird-2.0.d.ts" />
