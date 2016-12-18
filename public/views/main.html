@@ -1,0 +1,59 @@
+﻿<header id="header" style="box-shadow:0 2px 4px 0 rgba(0,0,0,.25); border-bottom:1px solid #222; border-top: 1px solid #333;">
+    <div id="logo-group">
+        <span id="logo" style="color: white; font-size: 16px;">
+            <img src="/smartracker/css/img/satellite.png" style="width: 30px; height:30px;" alt="Gps">
+            Smart Tracker
+        </span>
+    </div>
+    <div class="pull-right">
+        <div id="hide-menu" class="btn-header pull-right">
+            <span>
+                <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu">
+                    <i class="fa fa-reorder"></i>
+                </a>
+            </span>
+        </div>
+        <div id="fullscreen" class="btn-header transparent pull-right">
+            <span>
+                <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen">
+                    <i class="fa fa-arrows-alt"></i>
+                </a>
+            </span>
+        </div>
+        <div id="logout" class="btn-header transparent pull-right">
+            <span>
+                <a href="#" title="Sign Out" ng-click="ctrl.logout()">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+</header>
+<aside id="left-panel">
+    <nav>
+        <ul>
+            <li ui-sref-active="active">
+                <a ui-sref="site.main.client">
+                    <i class="fa fa-lg fa-fw fa-users"></i>
+                    <span class="menu-item-parent">Clients</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="site.main.monitoring">
+                    <i class="fa fa-lg fa-fw fa-map-marker"></i>
+                    <span class="menu-item-parent">Monitoring</span>
+                </a>
+            </li>
+
+            <li ng-controller="LoginCtrl as LoginCtrl">
+                <a href="#" ng-click="LoginCtrl.logout()">
+                    <i class="fa fa-lg fa-fw fa-power-off"></i>
+                    <span class="menu-item-parent">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+<div id="main" role="main">
+    <div ui-view id="content"></div>
+</div>
