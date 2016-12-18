@@ -2,6 +2,8 @@
 import * as http from 'http';
 import * as socketio from 'socket.io';
 import Device from './Device';
+import DeviceController from '../controllers/DeviceController';
+import ClientController from '../controllers/ClientController';
 
 export default class Server {
     clientServer: http.Server;
@@ -23,7 +25,7 @@ export default class Server {
                     var device: Device = this.devices[serial];
 
                     if (!device) {
-                        this.authenticateDevice(serial);
+                        this.authenticateDevice(serial, socket);
                         return;
                     }
                 });
@@ -39,7 +41,16 @@ export default class Server {
         this.clientServer.listen(port);
     }
 
-    authenticateDevice(serial: string): void {
+    authenticateDevice(serial: string, socket): void {
+        ClientController.findByDeviceSerial(serial).then(res => {
+            if (!res) {
+                console.log('Client is not found');
+                return;
+            }
 
+            var device = new Device(socket, this.io);
+            this.devices[serial] = device;
+            console.log('Device %s is authenticated', serial);
+        });
     }
 }

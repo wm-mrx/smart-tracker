@@ -54,6 +54,7 @@
     <TypeScriptCompile Include="controllers\BaseController.ts" />
     <TypeScriptCompile Include="controllers\ClientController.ts" />
     <TypeScriptCompile Include="controllers\DeviceController.ts" />
+    <TypeScriptCompile Include="controllers\PositionController.ts" />
     <TypeScriptCompile Include="controllers\UserController.ts" />
     <TypeScriptCompile Include="core\Device.ts" />
     <TypeScriptCompile Include="core\Server.ts" />

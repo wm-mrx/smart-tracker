@@ -2,6 +2,8 @@
 const net = require("net");
 const http = require("http");
 const socketio = require("socket.io");
+const Device_1 = require("./Device");
+const ClientController_1 = require("../controllers/ClientController");
 class Server {
     constructor(app) {
         this.devices = {};
@@ -17,7 +19,7 @@ class Server {
                     var serial = commands[1];
                     var device = this.devices[serial];
                     if (!device) {
-                        this.authenticateDevice(serial);
+                        this.authenticateDevice(serial, socket);
                         return;
                     }
                 });
@@ -29,7 +31,16 @@ class Server {
         this.io.on('connection', (socket) => { });
         this.clientServer.listen(port);
     }
-    authenticateDevice(serial) {
+    authenticateDevice(serial, socket) {
+        ClientController_1.default.findByDeviceSerial(serial).then(res => {
+            if (!res) {
+                console.log('Client is not found');
+                return;
+            }
+            var device = new Device_1.default(socket, this.io);
+            this.devices[serial] = device;
+            console.log('Device %s is authenticated', serial);
+        });
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
