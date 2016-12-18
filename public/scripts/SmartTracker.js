@@ -3,6 +3,7 @@ var SmartTracker;
     SmartTracker.smartTracker = angular.module('smartTracker', ['ui.router', 'angular-loading-bar', 'ui-notification', 'ui.bootstrap', 'bw.paging']);
     SmartTracker.root = '/smartracker';
     SmartTracker.service = SmartTracker.root + '/ws/';
+    SmartTracker.socketUrl = 'http://localhost:5000';
     var principal = ($q, $http, $timeout) => {
         var _identity = undefined;
         var _authenticated = false;

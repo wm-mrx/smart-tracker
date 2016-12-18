@@ -2,6 +2,7 @@
     export var smartTracker = angular.module('smartTracker', ['ui.router', 'angular-loading-bar', 'ui-notification', 'ui.bootstrap', 'bw.paging']);
     export var root: string = '/smartracker';
     export var service: string = root + '/ws/';
+    export var socketUrl: string = 'http://localhost:5000';
     export var http: ng.IHttpService;
 
     var principal = ($q, $http, $timeout) => {

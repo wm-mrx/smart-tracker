@@ -8,7 +8,9 @@ var SmartTracker;
                 this.$state = $state;
                 this.principal = principal;
                 principal.identity().then((identity) => {
-                    $scope.identity = identity;
+                    var socket = io.connect(SmartTracker.socketUrl);
+                    socket.on('update position', (data) => {
+                    });
                 });
             }
         }
