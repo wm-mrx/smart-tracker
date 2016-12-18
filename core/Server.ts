@@ -43,7 +43,17 @@ export default class Server {
     }
 
     startClient(port): void {
-        this.io.on('connection', (socket) => {});
+        this.io.on('connection', (socket) => {
+            socket.on('set clients', () => {
+                var keys = Object.keys(this.devices);
+                var clients = [];
+
+                for (var i = 0; i < keys.length; i++) 
+                    clients.push(this.devices[keys[i]].client);
+                
+                socket.emit('get clients', clients);
+            });
+        });
 
         this.clientServer.listen(port, () => {
             console.log('Client server is running on port %s', port);

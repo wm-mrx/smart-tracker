@@ -10,7 +10,18 @@ var SmartTracker;
                 this.clients = [];
                 principal.identity().then((identity) => {
                     var socket = io.connect(SmartTracker.socketUrl);
+                    socket.emit('set clients', null);
                     socket.on('update position', (data) => {
+                    });
+                    socket.on('get clients', (clients) => {
+                        $scope.$apply(() => {
+                            for (var i = 0; i < clients.length; i++) {
+                                var client = new SmartTracker.Models.Client(clients[i]);
+                                var existingClient = this.clients.filter(e => e.id === client.id)[0];
+                                if (!existingClient)
+                                    this.clients.push(client);
+                            }
+                        });
                     });
                     socket.on('update client', (data) => {
                         $scope.$apply(() => {
