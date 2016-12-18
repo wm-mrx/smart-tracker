@@ -2,7 +2,7 @@
 const sequelize = require("sequelize");
 exports.attributes = {
     id: { type: sequelize.BIGINT, allowNull: false, primaryKey: true, autoIncrement: true },
-    deviceId: { type: sequelize.STRING, allowNull: false, field: 'device_id' },
+    deviceId: { type: sequelize.BIGINT, allowNull: false, field: 'device_id' },
     passportNo: { type: sequelize.STRING, allowNull: false, field: 'passport_no' },
     firstName: { type: sequelize.STRING, allowNull: false },
     lastName: { type: sequelize.STRING, allowNull: false },
