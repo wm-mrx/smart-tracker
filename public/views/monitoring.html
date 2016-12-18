@@ -1,0 +1,123 @@
+﻿<section id="widget-grid">
+    <div class="row no-space">
+        <article class="col-md-3">
+            <div class="jarviswidget" role="widget">
+                <header role="heading" data-block="header">
+                    <span class="widget-icon">
+                        <i class="fa fa-users"></i>
+                    </span>
+                    <h2>Clients</h2>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox"></div>
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar">
+                            <input type="text" class="form-control" placeholder="Search terminal number" />
+                        </div>
+                        <div class="table-responsive" style="overflow-y: scroll; max-height:500px;">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr ng-repeat="client in ctrl.clients">
+                                        <td>
+                                            <a href="#" ng-click="ctrl.markerInfo(client)"><i class="fa fa-mobile"></i> {{client.firstName}} {{client.lastName}}</a>
+                                            -
+                                            <a href="#" ng-click="ctrl.redirectHistory(client)">
+                                                show history
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="col-md-9">
+            <div class="jarviswidget" role="widget">
+                <header role="heading" data-block="header">
+                    <span class="widget-icon">
+                        <i class="fa fa-map-marker"></i>
+                    </span>
+                    <h2>Monitor  (Updated: {{ctrl.realtimeDate | date:'dd-MM-yyyy HH:mm:ss' }})</h2>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox"></div>
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar">
+                            <div class="map" id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+
+<!--
+<div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+            </div>
+            <div class="modal-body" id="feature-info">
+                <table class='table table-striped table-bordered table-condensed'>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ctrl.entity.firstName}} {{ctrl.entity.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Device Model</th>
+                        <td>{{ctrl.entity.device.model}}</td>
+                    </tr>
+                    <tr>
+                        <th>Device Serial</th>
+                        <td>{{ctrl.entity.device.serial}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ctrl.entity.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact</th>
+                        <td>{{ctrl.entity.contact}}</td>
+                    </tr>
+                    <tr>
+                        <th>Latitude</th>
+                        <td>{{ctrl.entity.marker._latlng.lat}}</td>
+                    </tr>
+                    <tr>
+                        <th>Longitude</th>
+                        <td>{{ctrl.entity.marker._latlng.lng}}</td>
+                    </tr>
+                    <tr>
+                        <th>Battery Level</th>
+                        <td>{{ctrl.entity.feature.properties.batteryLevel}}%</td>
+                    </tr>
+                    <tr>
+                        <th>Signal Quality</th>
+                        <td>{{ctrl.entity.feature.properties.signalQuality}}</td>
+                    </tr>
+                    <tr>
+                        <th>Positioning Model</th>
+                        <td>{{ctrl.entity.feature.properties.positioningMode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Transmission Model</th>
+                        <td>{{ctrl.entity.feature.properties.transmissionMode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Update</th>
+                        <td>{{ctrl.entity.feature.properties.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>-->
