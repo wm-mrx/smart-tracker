@@ -139,6 +139,10 @@
     <TypeScriptCompile Include="models\User.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\IndexCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\LoginCtrl.ts" />
+    <TypeScriptCompile Include="public\scripts\models\Client.ts" />
+    <TypeScriptCompile Include="public\scripts\models\Device.ts" />
+    <TypeScriptCompile Include="public\scripts\models\Position.ts" />
+    <TypeScriptCompile Include="public\scripts\models\User.ts" />
     <TypeScriptCompile Include="public\scripts\Services.ts" />
     <TypeScriptCompile Include="public\scripts\SmartTracker.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
@@ -181,6 +185,7 @@
     <Folder Include="public\js\" />
     <Folder Include="public\scripts\" />
     <Folder Include="public\scripts\controllers\" />
+    <Folder Include="public\scripts\models\" />
     <Folder Include="public\views\" />
     <Folder Include="utils\" />
     <Folder Include="typings\" />
