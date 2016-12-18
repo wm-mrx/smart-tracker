@@ -34,9 +34,7 @@ export default class Server {
     }
 
     startClient(port): void {
-        this.io.on('connection', (socket) => {
-
-        });
+        this.io.on('connection', (socket) => {});
 
         this.clientServer.listen(port);
     }

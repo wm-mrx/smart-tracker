@@ -54,6 +54,7 @@
     <TypeScriptCompile Include="core\Device.ts" />
     <TypeScriptCompile Include="core\Server.ts" />
     <TypeScriptCompile Include="models\Client.ts" />
+    <TypeScriptCompile Include="models\Configurator.ts" />
     <TypeScriptCompile Include="models\Device.ts" />
     <TypeScriptCompile Include="models\Instance.ts" />
     <TypeScriptCompile Include="models\Model.ts" />
@@ -83,6 +84,7 @@
   <ItemGroup>
     <Folder Include="models\" />
     <Folder Include="core\" />
+    <Folder Include="controllers\" />
     <Folder Include="utils\" />
     <Folder Include="typings\" />
     <Folder Include="typings\angularjs\" />

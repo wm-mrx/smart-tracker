@@ -26,8 +26,7 @@ class Server {
         });
     }
     startClient(port) {
-        this.io.on('connection', (socket) => {
-        });
+        this.io.on('connection', (socket) => { });
         this.clientServer.listen(port);
     }
     authenticateDevice(serial) {
