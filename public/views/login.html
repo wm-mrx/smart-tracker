@@ -1,0 +1,59 @@
+﻿<div>
+    <div id="extr-page">
+        <header id="header" style="height: 10px;" class="hidden-sm hidden-xs"></header>
+        <div id="main" role="main">
+            <!-- MAIN CONTENT -->
+            <div id="content" class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 text-center" style="padding-top: 70px;">
+                        <img src="/smartracker/css/img/satellite.png" alt="Geo Client" style="width: 150px; height: 150px;" />
+                        <span class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h1 style="padding: 8px" class="text-center"><strong>Smart Tracker</strong></h1>
+                        </span>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                        <div class="well no-padding" style="background-color: white;">
+                            <form method="POST" id="login-form" class="smart-form client-form" ng-submit="ctrl.login()">
+                                <header style="background-color: white;">
+                                    Login to smart tracker
+                                </header>
+                                <div class="alert" ng-show="formMessage" ng-class="{'alert-success': formMessage.type === 'success', 'alert-danger': formMessage.type === 'error'}">
+                                    <p>{{formMessage.message}}</p>
+                                </div>
+                                <fieldset>
+                                    <section>
+                                        <label class="label">Username</label>
+                                        <label class="input" ng-class="{'state-error': formMessage.errors.UserName}">
+                                            <i class="icon-append fa fa-user"></i>
+                                            <input type="text" name="username" ng-model="ctrl.user.userName" style="background-color: white;">
+                                            <b class="tooltip tooltip-top-right"><i class="fa fa-user"></i> Please enter username</b>
+                                        </label>
+                                        <div class="note note-error" ng-show="formMessage.errors.UserName">
+                                            <p ng-repeat="message in formMessage.errors.UserName">{{message}}</p>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <label class="label">Password</label>
+                                        <label class="input" ng-class="{'state-error': formMessage.errors.Password}">
+                                            <i class="icon-append fa fa-lock"></i>
+                                            <input type="password" name="password" ng-model="ctrl.user.password" style="background-color: white;">
+                                            <b class="tooltip tooltip-top-right"><i class="fa fa-lock"></i> Enter your password</b>
+                                        </label>
+                                        <div class="note note-error" ng-show="formMessage.errors.Password">
+                                            <p ng-repeat="message in formMessage.errors.Password">{{message}}</p>
+                                        </div>
+                                    </section>
+                                </fieldset>
+                                <footer style="background-color: white;">
+                                    <button type="submit" class="btn btn-default">
+                                        Login
+                                    </button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
