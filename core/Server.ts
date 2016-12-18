@@ -53,6 +53,15 @@ export default class Server {
                 
                 socket.emit('get clients', clients);
             });
+
+            socket.on('set latest position', (data) => {
+                var device: Device = this.devices[data];
+
+                if (!device)
+                    return;
+
+                device.getLastPosition();
+            });
         });
 
         this.clientServer.listen(port, () => {

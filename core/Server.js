@@ -41,6 +41,12 @@ class Server {
                     clients.push(this.devices[keys[i]].client);
                 socket.emit('get clients', clients);
             });
+            socket.on('set latest position', (data) => {
+                var device = this.devices[data];
+                if (!device)
+                    return;
+                device.getLastPosition();
+            });
         });
         this.clientServer.listen(port, () => {
             console.log('Client server is running on port %s', port);

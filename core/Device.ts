@@ -147,6 +147,16 @@ export default class Device {
 
     }
 
+    getLastPosition(): void {
+        PositionController.findLatestByClient(this.client.id).then(res => {
+            if (!res)
+                return;
+
+            var position = res.toJSON();
+            this.io.emit('get latest position', position);
+        });
+    }
+
     parse(data: any): ICommand {
         var commands = data.toString().split(';');
 
