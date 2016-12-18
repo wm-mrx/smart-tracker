@@ -28,7 +28,12 @@ export default class Server {
                         this.authenticateDevice(serial, socket);
                         return;
                     }
+
+                    device.socket = socket;
+                    device.onDataReceived(data);
                 });
+
+                socket.pipe(socket);
             });
 
             server.listen(port);
@@ -48,7 +53,8 @@ export default class Server {
                 return;
             }
 
-            var device = new Device(socket, this.io);
+            var client = res.toJSON();
+            var device = new Device(socket, client, this.io);
             this.devices[serial] = device;
             console.log('Device %s is authenticated', serial);
         });

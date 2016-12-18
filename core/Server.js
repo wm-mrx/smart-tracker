@@ -22,7 +22,10 @@ class Server {
                         this.authenticateDevice(serial, socket);
                         return;
                     }
+                    device.socket = socket;
+                    device.onDataReceived(data);
                 });
+                socket.pipe(socket);
             });
             server.listen(port);
         });
@@ -37,7 +40,8 @@ class Server {
                 console.log('Client is not found');
                 return;
             }
-            var device = new Device_1.default(socket, this.io);
+            var client = res.toJSON();
+            var device = new Device_1.default(socket, client, this.io);
             this.devices[serial] = device;
             console.log('Device %s is authenticated', serial);
         });
