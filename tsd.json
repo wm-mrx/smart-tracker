@@ -1,0 +1,60 @@
+﻿{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "express/express.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "mime/mime.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "express-serve-static-core/express-serve-static-core.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "node/node.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "express-session/express-session.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "multer/multer.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "socket.io/socket.io.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "e45879a3b4a6d7e265f21103ae044cefb3cee37c"
+    },
+    "validator/validator.d.ts": {
+      "commit": "6b3bc735ad028ca115c06721fb1c71ffc0e7a546"
+    },
+    "bluebird/bluebird-2.0.d.ts": {
+      "commit": "6b3bc735ad028ca115c06721fb1c71ffc0e7a546"
+    },
+    "sequelize/sequelize.d.ts": {
+      "commit": "6b3bc735ad028ca115c06721fb1c71ffc0e7a546"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "6b3bc735ad028ca115c06721fb1c71ffc0e7a546"
+    },
+    "leaflet/leaflet.d.ts": {
+      "commit": "40369139ce3199a94fb7a89233ed31c5fe07c567"
+    },
+    "geojson/geojson.d.ts": {
+      "commit": "40369139ce3199a94fb7a89233ed31c5fe07c567"
+    }
+  }
+}
