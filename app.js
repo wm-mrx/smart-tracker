@@ -39,8 +39,18 @@ app.get('/smartracker/client', (req, res) => {
 app.get('/smartracker/monitoring', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/Views/index.html'));
 });
+const UserRoutes_1 = require("./routes/UserRoutes");
+const DeviceRoutes_1 = require("./routes/DeviceRoutes");
+const ClientRoutes_1 = require("./routes/ClientRoutes");
+const PositionRoutes_1 = require("./routes/PositionRoutes");
+app.use(UserRoutes_1.default);
+app.use(DeviceRoutes_1.default);
+app.use(ClientRoutes_1.default);
+app.use(PositionRoutes_1.default);
 const Server_1 = require("./core/Server");
 var core = new Server_1.default(app);
 core.startClient(clientPort);
 core.startDevice(devicePorts);
+const UserController_1 = require("./controllers/UserController");
+UserController_1.default.save({ "name": 'admin', "userName": 'admin', "password": 'admin' });
 //# sourceMappingURL=app.js.map

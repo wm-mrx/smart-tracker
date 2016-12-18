@@ -51,6 +51,14 @@ app.get('/smartracker/monitoring', (req, res) => {
 });
 
 import userRoutes from './routes/UserRoutes';
+import deviceRoutes from './routes/DeviceRoutes';
+import clientRoutes from './routes/ClientRoutes';
+import positionRoutes from './routes/PositionRoutes';
+
+app.use(userRoutes);
+app.use(deviceRoutes);
+app.use(clientRoutes);
+app.use(positionRoutes);
 
 import Server from './core/Server';
 
