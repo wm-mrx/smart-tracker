@@ -51,6 +51,7 @@
     <Content Include=".gitignore" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="core\Device.ts" />
     <TypeScriptCompile Include="core\Server.ts" />
     <TypeScriptCompile Include="models\Client.ts" />
     <TypeScriptCompile Include="models\Device.ts" />
