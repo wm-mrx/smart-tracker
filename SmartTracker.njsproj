@@ -118,6 +118,8 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="public\views\index.html" />
+    <Content Include="public\views\login.html" />
+    <Content Include="public\views\main.html" />
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="app.ts" />
     <Content Include=".gitignore" />
@@ -147,6 +149,7 @@
     <TypeScriptCompile Include="public\scripts\models\User.ts" />
     <TypeScriptCompile Include="public\scripts\Services.ts" />
     <TypeScriptCompile Include="public\scripts\SmartTracker.ts" />
+    <TypeScriptCompile Include="routes\UserRoutes.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bluebird\bluebird-2.0.d.ts" />
     <TypeScriptCompile Include="typings\body-parser\body-parser.d.ts" />
@@ -173,6 +176,7 @@
     <Folder Include="models\" />
     <Folder Include="core\" />
     <Folder Include="controllers\" />
+    <Folder Include="routes\" />
     <Folder Include="public\" />
     <Folder Include="public\css\" />
     <Folder Include="public\css\fonts\" />
