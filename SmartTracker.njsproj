@@ -136,6 +136,8 @@
     <TypeScriptCompile Include="models\Model.ts" />
     <TypeScriptCompile Include="models\Position.ts" />
     <TypeScriptCompile Include="models\User.ts" />
+    <TypeScriptCompile Include="public\scripts\controllers\LoginCtrl.ts" />
+    <TypeScriptCompile Include="public\scripts\Services.ts" />
     <TypeScriptCompile Include="public\scripts\SmartTracker.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bluebird\bluebird-2.0.d.ts" />
@@ -176,6 +178,7 @@
     <Folder Include="public\fonts\fontawesome4.2\" />
     <Folder Include="public\js\" />
     <Folder Include="public\scripts\" />
+    <Folder Include="public\scripts\controllers\" />
     <Folder Include="public\views\" />
     <Folder Include="utils\" />
     <Folder Include="typings\" />
