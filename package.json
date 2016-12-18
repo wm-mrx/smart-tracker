@@ -1,0 +1,9 @@
+{
+  "name": "smart-tracker",
+  "version": "0.0.0",
+  "description": "SmartTracker",
+  "main": "app.js",
+  "author": {
+    "name": "wilmi"
+  }
+}
