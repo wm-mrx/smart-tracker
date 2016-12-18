@@ -35,19 +35,19 @@ app.listen(config('port'), (error) => {
 });
 
 app.get('/smartracker', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 app.get('/smartracker/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 app.get('/smartracker/client', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 app.get('/smartracker/monitoring', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 import userRoutes from './routes/UserRoutes';
