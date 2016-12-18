@@ -3,6 +3,7 @@
     export var root: string = '/smartracker';
     export var service: string = root + '/ws/';
     export var socketUrl: string = 'http://localhost:5000';
+    //export var socketUrl: string = 'http://ciaoindonesia.com:5000';
     export var http: ng.IHttpService;
 
     var principal = ($q, $http, $timeout) => {
