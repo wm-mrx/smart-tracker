@@ -9,7 +9,7 @@ class PositionController extends BaseController_1.default {
         return this.model.findAll({ where: { clientId: clientId }, include: this.includes });
     }
     findLatestByClient(clientId) {
-        return this.model.findOne({ where: { clientId: clientId }, include: this.includes, order: ['id', 'DESC'] });
+        return this.model.findOne({ where: { clientId: clientId }, include: this.includes, order: [['id', 'DESC']] });
     }
     saveNotStationary(data) {
         return this.db.transaction((t) => {

@@ -14,7 +14,7 @@ class PositionController extends BaseController<IPosition>{
     }
 
     findLatestByClient(clientId: number): Promise<Instance<IPosition>> {
-        return this.model.findOne({ where: { clientId: clientId }, include: this.includes, order: ['id', 'DESC'] });
+        return this.model.findOne({ where: { clientId: clientId }, include: this.includes, order: [['id', 'DESC']] });
     }
 
     saveNotStationary(data: IPosition): Promise<Instance<boolean>> {
