@@ -51,6 +51,4 @@ const Server_1 = require("./core/Server");
 var core = new Server_1.default(app);
 core.startClient(clientPort);
 core.startDevice(devicePorts);
-const UserController_1 = require("./controllers/UserController");
-UserController_1.default.save({ "name": 'admin', "userName": 'admin', "password": 'admin' });
 //# sourceMappingURL=app.js.map
