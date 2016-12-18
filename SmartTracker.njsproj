@@ -101,6 +101,22 @@
     <Content Include="public\css\smartadmin\smartadmin-rtl.min.css" />
     <Content Include="public\css\smartadmin\smartadmin-skins.min.css" />
     <Content Include="public\css\ui-notification.css" />
+    <Content Include="public\fonts\fontawesome-webfont.eot" />
+    <Content Include="public\fonts\fontawesome-webfont.svg" />
+    <Content Include="public\fonts\fontawesome-webfont.ttf" />
+    <Content Include="public\fonts\fontawesome-webfont.woff" />
+    <Content Include="public\fonts\FontAwesome.otf" />
+    <Content Include="public\fonts\fontawesome4.2\fontawesome-webfont.eot" />
+    <Content Include="public\fonts\fontawesome4.2\fontawesome-webfont.svg" />
+    <Content Include="public\fonts\fontawesome4.2\fontawesome-webfont.ttf" />
+    <Content Include="public\fonts\fontawesome4.2\fontawesome-webfont.woff" />
+    <Content Include="public\fonts\fontawesome4.2\FontAwesome.otf" />
+    <Content Include="public\fonts\fontawesome4.2\readme.txt" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="app.ts" />
     <Content Include=".gitignore" />
@@ -120,6 +136,7 @@
     <TypeScriptCompile Include="models\Model.ts" />
     <TypeScriptCompile Include="models\Position.ts" />
     <TypeScriptCompile Include="models\User.ts" />
+    <TypeScriptCompile Include="public\scripts\SmartTracker.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\bluebird\bluebird-2.0.d.ts" />
     <TypeScriptCompile Include="typings\body-parser\body-parser.d.ts" />
@@ -155,6 +172,11 @@
     <Folder Include="public\css\img\favicon\" />
     <Folder Include="public\css\img\jqueryui\" />
     <Folder Include="public\css\smartadmin\" />
+    <Folder Include="public\fonts\" />
+    <Folder Include="public\fonts\fontawesome4.2\" />
+    <Folder Include="public\js\" />
+    <Folder Include="public\scripts\" />
+    <Folder Include="public\views\" />
     <Folder Include="utils\" />
     <Folder Include="typings\" />
     <Folder Include="typings\angularjs\" />
@@ -174,6 +196,18 @@
     <Folder Include="typings\serve-static\" />
     <Folder Include="typings\socket.io\" />
     <Folder Include="typings\validator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="public\js\angular-ui-notification.min.js" />
+    <Compile Include="public\js\angular-ui-router.min.js" />
+    <Compile Include="public\js\angular.min.js" />
+    <Compile Include="public\js\bootstrap.js" />
+    <Compile Include="public\js\jquery-1.10.2.js" />
+    <Compile Include="public\js\loading-bar.js" />
+    <Compile Include="public\js\ng-websocket.js" />
+    <Compile Include="public\js\paging.min.js" />
+    <Compile Include="public\js\socket.io.min.js" />
+    <Compile Include="public\js\ui-bootstrap-tpls-1.2.5.min.js" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
