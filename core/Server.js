@@ -47,6 +47,7 @@ class Server {
             var client = res.toJSON();
             var device = new Device_1.default(socket, client, this.io);
             this.devices[serial] = device;
+            device.io.emit('update client', client);
             console.log('Device %s is authenticated', serial);
         });
     }

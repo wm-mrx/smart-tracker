@@ -120,6 +120,7 @@
     <Content Include="public\views\index.html" />
     <Content Include="public\views\login.html" />
     <Content Include="public\views\main.html" />
+    <Content Include="public\views\monitoring.html" />
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="app.ts" />
     <Content Include=".gitignore" />
