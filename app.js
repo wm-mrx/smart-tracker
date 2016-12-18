@@ -28,16 +28,16 @@ app.listen(config_1.default('port'), (error) => {
     console.log('Smart Tracker DB is running');
 });
 app.get('/smartracker', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 app.get('/smartracker/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 app.get('/smartracker/client', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 app.get('/smartracker/monitoring', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Views/index.html'));
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 const UserRoutes_1 = require("./routes/UserRoutes");
 const DeviceRoutes_1 = require("./routes/DeviceRoutes");
