@@ -13,13 +13,14 @@
 
     class MonitoringCtrl {
         map: L.Map;
+        markers: L.Marker[];
+        clients: Models.Client[];
         clientMarkers: IClientMarker[];
 
         static $inject = ['$scope', '$state', 'principal'];
 
         constructor(public $scope, public $state, public principal) {
-            this.clientMarkers = [];
-
+            this.markers = [];
             this.initMap();
             
             principal.identity().then((identity) => {
@@ -34,10 +35,13 @@
             socket.emit('set clients', null);
 
             socket.on('get clients', (data) => {
+                this.clients = [];
+
                 scope.$apply(() => {
                     var clients = <Array<any>>data;
 
                     clients.forEach(client => {
+                        this.clients.push(client);
                         socket.emit('set latest position', client.device.serial);
                     });
                 });
@@ -46,34 +50,32 @@
             socket.on('get latest position', (data) => {
                 scope.$apply(() => {
                     var position = new Models.Position(data);
-                    var existingClient = this.clientMarkers.filter(e => e.client.id == position.clientId)[0];
+                    var existingMarker = this.markers.filter(e => e['clientId'] == position.clientId)[0];
 
-                    if (!existingClient) {
-                        var label = position.client.firstName + ' ' + position.client.lastName;
-                        var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + label + '</p>').addTo(this.map);
-                        this.clientMarkers.push({ client: position.client, marker: marker });
+                    if (!existingMarker) {
+                        var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + position.client.firstName + '</p>').addTo(this.map);
+                        this.markers.push(marker);
+                        return;
                     }
 
-                    existingClient.marker.setLatLng([position.latitude, position.longitude]);
+                    existingMarker.setLatLng([position.latitude, position.longitude]);
                 });
             });
 
             socket.on('update position', (data) => {
-                var position = new Models.Position(data);
-                var existingClient = this.clientMarkers.filter(e => e.client.id == position.clientId)[0];
-
-                if (!existingClient) {
-                    var label = position.client.firstName + ' ' + position.client.lastName;
-                    var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + label + '</p>').addTo(this.map);
-                    this.clientMarkers.push({ client: position.client, marker: marker });
-                }
-
-                existingClient.marker.setLatLng([position.latitude, position.longitude]);
+               
             });
 
             socket.on('update client', (data) => {
-                var client = new Models.Client(data);
-                socket.emit('set latest position', client.device.serial);
+                scope.$apply(() => {
+                    var client = new Models.Client(data);
+                    var existingClient = this.clients.filter(e => e.id == client.id)[0];
+
+                    if (!existingClient)
+                        this.clients.push(client);
+
+                    socket.emit('set latest position', client.device.serial);
+                });
             });
         }
 
