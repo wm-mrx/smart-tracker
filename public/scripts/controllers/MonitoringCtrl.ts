@@ -65,6 +65,7 @@
 
                 socket.on('get latest position', (data) => {
                     $scope.$apply(() => {
+                        this.lastUpdated = new Date();
                         var position = new Models.Position(data);
                         var client = this.clients.filter(e => e.id == position.clientId)[0];
 
@@ -73,7 +74,6 @@
 
                         if (!existingClientMarker) {
                             var fullName = client.firstName + ' ' + client.lastName;
-
                             var newMarker = L.marker(latlng);
                             newMarker['bindLabel'](fullName);
                             newMarker['client'] = client;
@@ -81,9 +81,7 @@
                             return;
                         }
 
-                        existingClientMarker.marker.setLatLng(latlng);
-
-                        this.lastUpdated = new Date();
+                        existingClientMarker.marker.setLatLng(latlng); 
                     });
                 });
 

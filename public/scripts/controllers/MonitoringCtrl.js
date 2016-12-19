@@ -41,6 +41,7 @@ var SmartTracker;
                     });
                     socket.on('get latest position', (data) => {
                         $scope.$apply(() => {
+                            this.lastUpdated = new Date();
                             var position = new SmartTracker.Models.Position(data);
                             var client = this.clients.filter(e => e.id == position.clientId)[0];
                             var latlng = L.latLng(position.latitude, position.longitude);
@@ -54,7 +55,6 @@ var SmartTracker;
                                 return;
                             }
                             existingClientMarker.marker.setLatLng(latlng);
-                            this.lastUpdated = new Date();
                         });
                     });
                     socket.on('update client', (data) => {
