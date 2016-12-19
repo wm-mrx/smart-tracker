@@ -86,7 +86,7 @@
         }
 
         createMarker(latitude: number, longitude: number, label: string): L.Marker {
-            return L.marker([latitude, longitude])['bindLabel'](label, { noHide: true });
+            return L.marker([latitude, longitude]).bindPopup('<p>' + label + '</p>');
         }
     }
 
