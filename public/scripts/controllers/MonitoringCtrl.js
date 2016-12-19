@@ -31,7 +31,7 @@ var SmartTracker;
                         var existingClient = this.clientMarkers.filter(e => e.client.id == position.clientId)[0];
                         if (!existingClient) {
                             var label = position.client.firstName + ' ' + position.client.lastName;
-                            var marker = this.createMarker(position.latitude, position.longitude, label).addTo(this.map);
+                            var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + label + '</p>').addTo(this.map);
                             this.clientMarkers.push({ client: position.client, marker: marker });
                         }
                         existingClient.marker.setLatLng([position.latitude, position.longitude]);
@@ -42,7 +42,7 @@ var SmartTracker;
                     var existingClient = this.clientMarkers.filter(e => e.client.id == position.clientId)[0];
                     if (!existingClient) {
                         var label = position.client.firstName + ' ' + position.client.lastName;
-                        var marker = this.createMarker(position.latitude, position.longitude, label).addTo(this.map);
+                        var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + label + '</p>').addTo(this.map);
                         this.clientMarkers.push({ client: position.client, marker: marker });
                     }
                     existingClient.marker.setLatLng([position.latitude, position.longitude]);
@@ -58,7 +58,7 @@ var SmartTracker;
                 this.map.addControl(control);
                 SmartTracker.osm.addTo(this.map);
             }
-            createMarker(latitude, longitude, label) {
+            createMarker(latitude, longitude) {
                 return L.marker([latitude, longitude]);
             }
         }

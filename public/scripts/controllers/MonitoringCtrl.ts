@@ -64,7 +64,7 @@
 
                 if (!existingClient) {
                     var label = position.client.firstName + ' ' + position.client.lastName;
-                    var marker = this.createMarker(position.latitude, position.longitude, label).addTo(this.map);
+                    var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + label + '</p>').addTo(this.map);
                     this.clientMarkers.push({ client: position.client, marker: marker });
                 }
 
