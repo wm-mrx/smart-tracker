@@ -39,13 +39,67 @@
                     <span class="widget-icon">
                         <i class="fa fa-map-marker"></i>
                     </span>
-                    <h2>Monitor  (Updated: {{ctrl.lastUpdated | date:'dd-MM-yyyy HH:mm:ss' }})</h2>
+                    <h2>Monitor</h2>
                 </header>
                 <div>
                     <div class="jarviswidget-editbox"></div>
                     <div class="widget-body no-padding">
                         <div class="widget-body-toolbar">
                             <div class="map" id="map"></div>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Passport</th>
+                                        <th>Latitude</th>
+                                        <th>Longitude</th>
+                                        <th>Speed</th>
+                                        <th>Direction</th>
+                                        <th>Transmission Mode</th>
+                                        <th>Positioning Mode</th>
+                                        <th>Positioning Type</th>
+                                        <th>Signal Quality</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dataTable in ctrl.dataTables">
+                                        <td>
+                                            {{dataTable.client.firstName}} - {{dataTable.client.lastName}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.client.passportNo}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.latitude}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.longitude}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.speed}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.direction}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.transmissionMode}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.positioningMode}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.positioningType}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.signalQuality}}
+                                        </td>
+                                        <td>
+                                            {{dataTable.date | date: 'yyyy-MM-dd hh:mm:ss'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

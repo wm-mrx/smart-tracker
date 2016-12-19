@@ -16,7 +16,8 @@ var SmartTracker;
                     mapId: 'mapbox.mapbox-streets-v7'
                 });
                 this.clients = [];
-                this.clientMarkers = [];
+                this.markers = [];
+                this.dataTables = [];
                 principal.identity().then((identity) => {
                     this.initMap();
                     var socket = io.connect(SmartTracker.socketUrl);
@@ -41,20 +42,23 @@ var SmartTracker;
                     });
                     socket.on('get latest position', (data) => {
                         $scope.$apply(() => {
-                            this.lastUpdated = new Date();
                             var position = new SmartTracker.Models.Position(data);
                             var client = this.clients.filter(e => e.id == position.clientId)[0];
                             var latlng = L.latLng(position.latitude, position.longitude);
-                            var existingClientMarker = this.clientMarkers.filter(e => e.client.id == client.id)[0];
-                            if (!existingClientMarker) {
+                            var existingMarker = this.markers.filter(e => e['client'].id == client.id)[0];
+                            this.dataTables.push(position);
+                            if (!existingMarker) {
                                 var fullName = client.firstName + ' ' + client.lastName;
                                 var newMarker = L.marker(latlng);
-                                newMarker['bindLabel'](fullName);
+                                newMarker['bindLabel'](fullName, { noHide: true });
                                 newMarker['client'] = client;
+                                newMarker['position'] = position;
                                 newMarker.addTo(this.map);
+                                this.markers.push(newMarker);
                                 return;
                             }
-                            existingClientMarker.marker.setLatLng(latlng);
+                            existingMarker.setLatLng(latlng);
+                            existingMarker['position'] = position;
                         });
                     });
                     socket.on('update client', (data) => {

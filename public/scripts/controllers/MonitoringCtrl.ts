@@ -6,15 +6,11 @@
         emit(event: string, data: any);
     }
 
-    interface IClientMarker {
-        client: Models.IClient;
-        marker: L.Marker;
-    }
-
     class MonitoringCtrl {
         map: L.Map;
+        markers: L.Marker[];
         clients: Models.IClient[];
-        clientMarkers: IClientMarker[];
+        dataTables: any[];
         lastUpdated: Date;
 
         osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -31,7 +27,8 @@
 
         constructor(public $scope, public $state, public principal) {
             this.clients = [];
-            this.clientMarkers = [];
+            this.markers = [];
+            this.dataTables = [];
 
             principal.identity().then((identity) => {
                 this.initMap();
@@ -64,24 +61,28 @@
                 });
 
                 socket.on('get latest position', (data) => {
-                    $scope.$apply(() => {
-                        this.lastUpdated = new Date();
+                    $scope.$apply(() => {   
                         var position = new Models.Position(data);
                         var client = this.clients.filter(e => e.id == position.clientId)[0];
 
                         var latlng = L.latLng(position.latitude, position.longitude);
-                        var existingClientMarker = this.clientMarkers.filter(e => e.client.id == client.id)[0];
+                        var existingMarker = this.markers.filter(e => e['client'].id == client.id)[0];
 
-                        if (!existingClientMarker) {
+                        this.dataTables.push(position);
+
+                        if (!existingMarker) {
                             var fullName = client.firstName + ' ' + client.lastName;
                             var newMarker = L.marker(latlng);
-                            newMarker['bindLabel'](fullName);
+                            newMarker['bindLabel'](fullName, { noHide: true });
                             newMarker['client'] = client;
+                            newMarker['position'] = position;
                             newMarker.addTo(this.map);
+                            this.markers.push(newMarker);
                             return;
                         }
 
-                        existingClientMarker.marker.setLatLng(latlng); 
+                        existingMarker.setLatLng(latlng); 
+                        existingMarker['position'] = position;
                     });
                 });
 
