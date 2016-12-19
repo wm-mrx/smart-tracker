@@ -46,60 +46,62 @@
                     <div class="widget-body no-padding">
                         <div class="widget-body-toolbar">
                             <div class="map" id="map"></div>
-                            <table class="table table-condensed table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Passport</th>
-                                        <th>Latitude</th>
-                                        <th>Longitude</th>
-                                        <th>Speed</th>
-                                        <th>Direction</th>
-                                        <th>Transmission Mode</th>
-                                        <th>Positioning Mode</th>
-                                        <th>Positioning Type</th>
-                                        <th>Signal Quality</th>
-                                        <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="log in ctrl.logs">
-                                        <td>
-                                            {{log.client.firstName}} - {{log.client.lastName}}
-                                        </td>
-                                        <td>
-                                            {{log.client.passportNo}}
-                                        </td>
-                                        <td>
-                                            {{log.latitude}}
-                                        </td>
-                                        <td>
-                                            {{log.longitude}}
-                                        </td>
-                                        <td>
-                                            {{log.speed}}
-                                        </td>
-                                        <td>
-                                            {{log.direction}}
-                                        </td>
-                                        <td>
-                                            {{log.transmissionMode}}
-                                        </td>
-                                        <td>
-                                            {{log.positioningMode}}
-                                        </td>
-                                        <td>
-                                            {{log.positioningType}}
-                                        </td>
-                                        <td>
-                                            {{log.signalQuality}}
-                                        </td>
-                                        <td>
-                                            {{log.date | date: 'yyyy-MM-dd hh:mm:ss'}}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">Name</th>
+                                            <th style="text-align: center">Passport</th>
+                                            <th style="text-align: center">Latitude</th>
+                                            <th style="text-align: center">Longitude</th>
+                                            <th style="text-align: center">Speed</th>
+                                            <th style="text-align: center">Direction</th>
+                                            <th style="text-align: center">Transmission</th>
+                                            <th style="text-align: center">Positioning</th>
+                                            <th style="text-align: center">Type</th>
+                                            <th style="text-align: center">Signal</th>
+                                            <th style="text-align: center">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="log in ctrl.logs">
+                                            <td>
+                                                {{log.client.firstName}} - {{log.client.lastName}}
+                                            </td>
+                                            <td>
+                                                {{log.client.passportNo}}
+                                            </td>
+                                            <td>
+                                                {{log.latitude}}
+                                            </td>
+                                            <td>
+                                                {{log.longitude}}
+                                            </td>
+                                            <td>
+                                                {{log.speed}}
+                                            </td>
+                                            <td>
+                                                {{log.direction}}
+                                            </td>
+                                            <td>
+                                                {{log.transmissionMode}}
+                                            </td>
+                                            <td>
+                                                {{log.positioningMode}}
+                                            </td>
+                                            <td>
+                                                {{log.positioningType}}
+                                            </td>
+                                            <td>
+                                                {{log.signalQuality}}
+                                            </td>
+                                            <td>
+                                                {{log.date | date: 'yyyy-MM-dd hh:mm:ss'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
