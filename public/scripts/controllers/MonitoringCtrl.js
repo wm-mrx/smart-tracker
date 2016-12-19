@@ -30,15 +30,17 @@ var SmartTracker;
                 });
                 socket.on('get latest position', (data) => {
                     scope.$apply(() => {
-                        this.logs.push(position);
                         var position = new SmartTracker.Models.Position(data);
                         var existingMarker = this.markers.filter(e => e['clientId'] == position.clientId)[0];
+                        var existingLog = this.logs.filter(e => e['clientId'] == position.clientId)[0];
                         if (!existingMarker) {
                             var marker = this.createMarker(position.latitude, position.longitude);
                             marker.bindPopup('<p>' + position.client.firstName + ' ' + position.client.lastName + '</p>', { autoClose: false }).addTo(this.map);
                             this.markers.push(marker);
+                            this.logs.push(position);
                             return;
                         }
+                        existingLog = position;
                         existingMarker.setLatLng([position.latitude, position.longitude]);
                     });
                 });
