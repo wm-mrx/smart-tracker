@@ -69,11 +69,10 @@
                         var existingMarker = this.markers.filter(e => e['client'].id == client.id)[0];
 
                         this.dataTables.push(position);
-
                         if (!existingMarker) {
                             var fullName = client.firstName + ' ' + client.lastName;
                             var newMarker = L.marker(latlng);
-                            newMarker['bindLabel'](fullName, { noHide: true });
+                            newMarker['bindLabel'](fullName);
                             newMarker['client'] = client;
                             newMarker['position'] = position;
                             newMarker.addTo(this.map);

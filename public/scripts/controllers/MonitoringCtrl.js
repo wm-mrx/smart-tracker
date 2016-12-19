@@ -50,7 +50,7 @@ var SmartTracker;
                             if (!existingMarker) {
                                 var fullName = client.firstName + ' ' + client.lastName;
                                 var newMarker = L.marker(latlng);
-                                newMarker['bindLabel'](fullName, { noHide: true });
+                                newMarker['bindLabel'](fullName);
                                 newMarker['client'] = client;
                                 newMarker['position'] = position;
                                 newMarker.addTo(this.map);
