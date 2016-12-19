@@ -144,6 +144,7 @@
     <TypeScriptCompile Include="public\scripts\controllers\MonitoringCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\IndexCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\LoginCtrl.ts" />
+    <TypeScriptCompile Include="public\scripts\Layer.ts" />
     <TypeScriptCompile Include="public\scripts\models\Client.ts" />
     <TypeScriptCompile Include="public\scripts\models\Device.ts" />
     <TypeScriptCompile Include="public\scripts\models\Position.ts" />
