@@ -6,21 +6,17 @@
         emit(event: string, data: any);
     }
 
-    interface IClientMarker {
-        client: Models.IClient;
-        marker: L.Marker;
-    }
-
     class MonitoringCtrl {
         map: L.Map;
         markers: L.Marker[];
         clients: Models.Client[];
-        clientMarkers: IClientMarker[];
+        logs: any[];
 
         static $inject = ['$scope', '$state', 'principal'];
 
         constructor(public $scope, public $state, public principal) {
             this.markers = [];
+            this.logs = [];
             this.initMap();
             
             principal.identity().then((identity) => {
@@ -49,11 +45,13 @@
 
             socket.on('get latest position', (data) => {
                 scope.$apply(() => {
+                    this.logs.push(position);
                     var position = new Models.Position(data);
                     var existingMarker = this.markers.filter(e => e['clientId'] == position.clientId)[0];
 
                     if (!existingMarker) {
-                        var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + position.client.firstName + '</p>').addTo(this.map);
+                        var marker = this.createMarker(position.latitude, position.longitude);
+                        marker.bindPopup('<p>' + position.client.firstName + ' ' + position.client.lastName + '</p>', { autoClose: false }).addTo(this.map);
                         this.markers.push(marker);
                         return;
                     }

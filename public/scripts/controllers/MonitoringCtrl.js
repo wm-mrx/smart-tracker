@@ -8,6 +8,7 @@ var SmartTracker;
                 this.$state = $state;
                 this.principal = principal;
                 this.markers = [];
+                this.logs = [];
                 this.initMap();
                 principal.identity().then((identity) => {
                     this.initSocket(identity);
@@ -29,10 +30,12 @@ var SmartTracker;
                 });
                 socket.on('get latest position', (data) => {
                     scope.$apply(() => {
+                        this.logs.push(position);
                         var position = new SmartTracker.Models.Position(data);
                         var existingMarker = this.markers.filter(e => e['clientId'] == position.clientId)[0];
                         if (!existingMarker) {
-                            var marker = this.createMarker(position.latitude, position.longitude).bindPopup('<p>' + position.client.firstName + '</p>').addTo(this.map);
+                            var marker = this.createMarker(position.latitude, position.longitude);
+                            marker.bindPopup('<p>' + position.client.firstName + ' ' + position.client.lastName + '</p>', { autoClose: false }).addTo(this.map);
                             this.markers.push(marker);
                             return;
                         }

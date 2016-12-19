@@ -63,39 +63,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="dataTable in ctrl.dataTables">
+                                    <tr ng-repeat="log in ctrl.logs">
                                         <td>
-                                            {{dataTable.client.firstName}} - {{dataTable.client.lastName}}
+                                            {{log.client.firstName}} - {{log.client.lastName}}
                                         </td>
                                         <td>
-                                            {{dataTable.client.passportNo}}
+                                            {{log.client.passportNo}}
                                         </td>
                                         <td>
-                                            {{dataTable.latitude}}
+                                            {{log.latitude}}
                                         </td>
                                         <td>
-                                            {{dataTable.longitude}}
+                                            {{log.longitude}}
                                         </td>
                                         <td>
-                                            {{dataTable.speed}}
+                                            {{log.speed}}
                                         </td>
                                         <td>
-                                            {{dataTable.direction}}
+                                            {{log.direction}}
                                         </td>
                                         <td>
-                                            {{dataTable.transmissionMode}}
+                                            {{log.transmissionMode}}
                                         </td>
                                         <td>
-                                            {{dataTable.positioningMode}}
+                                            {{log.positioningMode}}
                                         </td>
                                         <td>
-                                            {{dataTable.positioningType}}
+                                            {{log.positioningType}}
                                         </td>
                                         <td>
-                                            {{dataTable.signalQuality}}
+                                            {{log.signalQuality}}
                                         </td>
                                         <td>
-                                            {{dataTable.date | date: 'yyyy-MM-dd hh:mm:ss'}}
+                                            {{log.date | date: 'yyyy-MM-dd hh:mm:ss'}}
                                         </td>
                                     </tr>
                                 </tbody>
