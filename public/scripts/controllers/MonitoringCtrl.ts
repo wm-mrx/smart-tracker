@@ -15,6 +15,7 @@
         map: L.Map;
         clients: Models.IClient[];
         clientMarkers: IClientMarker[];
+        lastUpdated: Date;
 
         osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -71,13 +72,18 @@
                         var existingClientMarker = this.clientMarkers.filter(e => e.client.id == client.id)[0];
 
                         if (!existingClientMarker) {
+                            var fullName = client.firstName + ' ' + client.lastName;
+
                             var newMarker = L.marker(latlng);
+                            newMarker['bindLabel'](fullName);
                             newMarker['client'] = client;
                             newMarker.addTo(this.map);
                             return;
                         }
 
                         existingClientMarker.marker.setLatLng(latlng);
+
+                        this.lastUpdated = new Date();
                     });
                 });
 

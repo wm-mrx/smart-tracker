@@ -46,12 +46,15 @@ var SmartTracker;
                             var latlng = L.latLng(position.latitude, position.longitude);
                             var existingClientMarker = this.clientMarkers.filter(e => e.client.id == client.id)[0];
                             if (!existingClientMarker) {
+                                var fullName = client.firstName + ' ' + client.lastName;
                                 var newMarker = L.marker(latlng);
+                                newMarker['bindLabel'](fullName);
                                 newMarker['client'] = client;
                                 newMarker.addTo(this.map);
                                 return;
                             }
                             existingClientMarker.marker.setLatLng(latlng);
+                            this.lastUpdated = new Date();
                         });
                     });
                     socket.on('update client', (data) => {
