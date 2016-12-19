@@ -13,7 +13,6 @@
 
     class MonitoringCtrl {
         map: L.Map;
-        center: L.LatLng;
         clients: Models.IClient[];
         clientMarkers: IClientMarker[];
 
@@ -97,7 +96,7 @@
         }
 
         initMap(): void {
-            this.map = L.map('map', { center: this.center, zoom: 12, zoomControl: false });
+            this.map = L.map('map', { center: L.latLng(-6.24771, 106.9353617), zoom: 12, zoomControl: false });
             L.control.layers({ "Osm": this.osm, "Satellite": this.satellite }).addTo(this.map);
             this.osm.addTo(this.map);
         }
