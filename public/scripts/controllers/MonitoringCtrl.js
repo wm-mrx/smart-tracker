@@ -49,12 +49,11 @@ var SmartTracker;
                             this.dataTables.push(position);
                             if (!existingMarker) {
                                 var fullName = client.firstName + ' ' + client.lastName;
-                                var newMarker = L.marker(latlng);
-                                newMarker['bindLabel'](fullName);
-                                newMarker['client'] = client;
-                                newMarker['position'] = position;
-                                newMarker.addTo(this.map);
-                                this.markers.push(newMarker);
+                                var marker = L.marker(latlng);
+                                marker['client'] = client;
+                                marker['position'] = position;
+                                marker.addTo(this.map);
+                                this.markers.push(marker);
                                 return;
                             }
                             existingMarker.setLatLng(latlng);
