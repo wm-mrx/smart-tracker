@@ -59,7 +59,7 @@ var SmartTracker;
                 SmartTracker.osm.addTo(this.map);
             }
             createMarker(latitude, longitude, label) {
-                return L.marker([latitude, longitude]).bindPopup('<p>' + label + '</p>');
+                return L.marker([latitude, longitude]);
             }
         }
         MonitoringCtrl.$inject = ['$scope', '$state', 'principal'];
