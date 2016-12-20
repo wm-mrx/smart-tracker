@@ -169,6 +169,7 @@ export default class Device {
     }
 
     onPositioning(): void {
+        var code = '#@H13@#';
         var dt = new Date();
         var year = dt.getFullYear();
         var month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : (dt.getMonth() + 1);
@@ -179,13 +180,13 @@ export default class Device {
         var fullDate = year + '-' + month + '-' + date;
         var time = hour + ':' + min + ':' + second;
         
-        var command = '#@H13@#;' + this.client.device.serial + ';' + this.client.device.imsi + ';000000;'
+        var body = this.client.device.serial + ';' + this.client.device.imsi + ';000000;'
             + fullDate + ';' + time + ';Reply;8;5080;';
 
-        var verificationCode = this.generateVerificationCode(command);
-        command += verificationCode + ';' + String.fromCharCode(0x01);
+        var verificationCode = this.generateVerificationCode(body);
+        var command = code + ';' + body + verificationCode + ';' + String.fromCharCode(0x01);
 
-        this.socket.write(command);
+        this.socket.write(body);
     }
 
     getLastPosition(): void {
@@ -215,7 +216,7 @@ export default class Device {
         for (var i = 0; i < characters.length; i++)
             total += characters[i].charCodeAt(null);
 
-        total = 100 - total % 100;
-        return '0x' + total.toString(16);
+        total %= 100;
+        return '0x' + (total - 100).toString(16);
     }
 }
