@@ -140,6 +140,7 @@
     <TypeScriptCompile Include="models\Model.ts" />
     <TypeScriptCompile Include="models\Position.ts" />
     <TypeScriptCompile Include="models\User.ts" />
+    <TypeScriptCompile Include="public\scripts\Config.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\ClientCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\IndexCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\LoginCtrl.ts" />

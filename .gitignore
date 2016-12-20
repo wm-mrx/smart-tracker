@@ -5,3 +5,5 @@ obj
 *.js.map
 node_modules
 env.json
+public/scripts/Config.ts
+public/scripts/Config.js
