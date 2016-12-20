@@ -9,7 +9,7 @@ var SmartTracker;
                 this.clients = [];
                 this.positions = [];
                 this.createMap(-6.24771, 106.9353617);
-                var socket = SmartTracker.io.connect(SmartTracker.socketUrl);
+                var socket = Controllers.io.connect(SmartTracker.socketUrl);
                 socket.emit('set clients', null);
                 socket.on('get clients', (data) => {
                     $scope.$apply(() => {

@@ -1,4 +1,6 @@
 ﻿module SmartTracker.Controllers {
+    export declare var io: { connect(url: string): Socket; }
+
     class MonitoringCtrl {
         map: L.Map;
         clients: Models.IClient[];
