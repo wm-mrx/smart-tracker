@@ -169,7 +169,23 @@ export default class Device {
     }
 
     onPositioning(): void {
+        var dt = new Date();
+        var year = dt.getFullYear();
+        var month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : (dt.getMonth() + 1);
+        var date = dt.getDate();
+        var hour = dt.getHours();
+        var min = dt.getMinutes();
+        var second = dt.getSeconds();
+        var fullDate = year + '-' + month + '-' + date;
+        var time = hour + ':' + min + ':' + second;
         
+        var command = '#@H13@#;' + this.client.device.serial + ';' + this.client.device.imsi + ';000000;'
+            + fullDate + ';' + time + ';Reply;8;5080;';
+
+        var verificationCode = this.generateVerificationCode(command);
+        command += verificationCode + ';' + String.fromCharCode(0x01);
+
+        this.socket.write(command);
     }
 
     getLastPosition(): void {
@@ -192,7 +208,14 @@ export default class Device {
         }
     }
 
-    generateVerificationCode(messages: any[]): any {
-        return null;
+    generateVerificationCode(command: string): any {
+        var characters = command.split('');
+        var total = 0
+
+        for (var i = 0; i < characters.length; i++)
+            total += characters[i].charCodeAt(null);
+
+        total = 100 - total % 100;
+        return '0x' + total.toString(16);
     }
 }

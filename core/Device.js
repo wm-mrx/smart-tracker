@@ -131,6 +131,20 @@ class Device {
         });
     }
     onPositioning() {
+        var dt = new Date();
+        var year = dt.getFullYear();
+        var month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : (dt.getMonth() + 1);
+        var date = dt.getDate();
+        var hour = dt.getHours();
+        var min = dt.getMinutes();
+        var second = dt.getSeconds();
+        var fullDate = year + '-' + month + '-' + date;
+        var time = hour + ':' + min + ':' + second;
+        var command = '#@H13@#;' + this.client.device.serial + ';' + this.client.device.imsi + ';000000;'
+            + fullDate + ';' + time + ';Reply;8;5080;';
+        var verificationCode = this.generateVerificationCode(command);
+        command += verificationCode + ';' + String.fromCharCode(0x01);
+        this.socket.write(command);
     }
     getLastPosition() {
         PositionController_1.default.findLatestByClient(this.client.id).then(res => {
@@ -148,8 +162,13 @@ class Device {
             messages: commands.slice(2, commands.length - 1)
         };
     }
-    generateVerificationCode(messages) {
-        return null;
+    generateVerificationCode(command) {
+        var characters = command.split('');
+        var total = 0;
+        for (var i = 0; i < characters.length; i++)
+            total += characters[i].charCodeAt(null);
+        total = 100 - total % 100;
+        return '0x' + total.toString(16);
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

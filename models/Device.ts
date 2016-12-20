@@ -5,6 +5,7 @@ import { Model } from './Model';
 export interface IDevice {
     id: number;
     serial: string;
+    imsi: string;
     number: string;
     ip: string;
     port: string;
@@ -13,6 +14,7 @@ export interface IDevice {
 export var attributes: sequelize.DefineAttributes = {
     id: { type: sequelize.BIGINT, allowNull: false, primaryKey: true, autoIncrement: true },
     serial: { type: sequelize.STRING, allowNull: false },
+    imsi: { type: sequelize.STRING, allowNull: false },
     number: { type: sequelize.STRING, allowNull: false },
     ip: { type: sequelize.STRING, allowNull: false },
     port: { type: sequelize.STRING, allowNull: false }
