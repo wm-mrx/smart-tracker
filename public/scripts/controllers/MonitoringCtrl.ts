@@ -105,6 +105,15 @@
             this.map.addControl(control);
             osm.addTo(this.map);
         }
+
+        positioning(position: Models.IPosition): void {
+            var client = this.getClient(this.clients, position.clientId);
+
+            if (!client)
+                return;
+
+            this.socket.emit('positioning', client.device.serial);
+        }
     }
 
     smartTracker.controller('MonitoringCtrl', MonitoringCtrl);

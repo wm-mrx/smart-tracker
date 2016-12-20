@@ -68,7 +68,7 @@ export default class Server {
                 device.getLastPosition();
             });
 
-            socket.on('request position', (data) => {
+            socket.on('positioning', (data) => {
                 var device: Device = this.devices[data];
 
                 if (!device)

@@ -80,6 +80,12 @@ var SmartTracker;
                 this.map.addControl(control);
                 SmartTracker.osm.addTo(this.map);
             }
+            positioning(position) {
+                var client = this.getClient(this.clients, position.clientId);
+                if (!client)
+                    return;
+                this.socket.emit('positioning', client.device.serial);
+            }
         }
         MonitoringCtrl.$inject = ['$scope', '$state', 'Notification'];
         SmartTracker.smartTracker.controller('MonitoringCtrl', MonitoringCtrl);
