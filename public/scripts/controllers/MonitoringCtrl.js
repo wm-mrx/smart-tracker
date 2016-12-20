@@ -76,9 +76,6 @@ var SmartTracker;
                 this.map.addControl(control);
                 SmartTracker.osm.addTo(this.map);
             }
-            positioning(client) {
-                this.socket.emit('request position', client.device.serial);
-            }
         }
         MonitoringCtrl.$inject = ['$scope', '$state', 'Notification'];
         SmartTracker.smartTracker.controller('MonitoringCtrl', MonitoringCtrl);
