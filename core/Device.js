@@ -1,5 +1,6 @@
 "use strict";
 const PositionController_1 = require("../controllers/PositionController");
+const NotificationController_1 = require("../controllers/NotificationController");
 class Device {
     constructor(socket, client, io) {
         this.socket = socket;
@@ -117,6 +118,16 @@ class Device {
     onLbs(command) {
     }
     onLowBattery(command) {
+        var notification = {
+            id: null,
+            clientId: this.client.id,
+            date: new Date(),
+            message: 'Low battery alert',
+            type: 'lowBattery'
+        };
+        NotificationController_1.default.save(notification).then(res => {
+            this.io.emit('notify', notification);
+        });
     }
     getLastPosition() {
         PositionController_1.default.findLatestByClient(this.client.id).then(res => {

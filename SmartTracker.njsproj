@@ -150,6 +150,7 @@
     <TypeScriptCompile Include="public\scripts\Layer.ts" />
     <TypeScriptCompile Include="public\scripts\models\Client.ts" />
     <TypeScriptCompile Include="public\scripts\models\Device.ts" />
+    <TypeScriptCompile Include="public\scripts\models\Notification.ts" />
     <TypeScriptCompile Include="public\scripts\models\Position.ts" />
     <TypeScriptCompile Include="public\scripts\models\User.ts" />
     <TypeScriptCompile Include="public\scripts\Services.ts" />

@@ -4,6 +4,7 @@ import * as socketio from 'socket.io';
 import Device from './Device';
 import DeviceController from '../controllers/DeviceController';
 import ClientController from '../controllers/ClientController';
+import NotificationController from '../controllers/NotificationController';
 
 export default class Server {
     clientServer: http.Server;
@@ -54,6 +55,10 @@ export default class Server {
                 socket.emit('get clients', clients);
             });
 
+            socket.on('set notifications', () => {
+                this.getNotifications();
+            });
+
             socket.on('set latest position', (data) => {
                 var device: Device = this.devices[data];
 
@@ -82,6 +87,12 @@ export default class Server {
 
             device.io.emit('update client', client);
             console.log('Device %s is authenticated', serial);
+        });
+    }
+
+    getNotifications(): void {
+        NotificationController.findAll({}).then(res => {
+            this.io.emit('get notifications', res.map(e => e.toJSON()));
         });
     }
 }

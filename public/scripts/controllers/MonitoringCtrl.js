@@ -11,12 +11,16 @@ var SmartTracker;
                 this.createMap(-6.24771, 106.9353617);
                 var socket = io.connect(SmartTracker.socketUrl);
                 socket.emit('set clients', null);
+                socket.emit('set notifications', null);
                 socket.on('get clients', (data) => {
                     $scope.$apply(() => {
                         this.onGetClients(data);
                         for (var i = 0; i < this.clients.length; i++)
                             socket.emit('set latest position', this.clients[i].device.serial);
                     });
+                });
+                socket.on('get notifications', (data) => {
+                    this.noitifications = data;
                 });
                 socket.on('update position', (data) => {
                     $scope.$apply(() => {
@@ -28,6 +32,8 @@ var SmartTracker;
                         this.onUpdateClient(data);
                         socket.emit('set latest position', data.device.serial);
                     });
+                });
+                socket.on('notify', (data) => {
                 });
             }
             onGetClients(data) {

@@ -4,7 +4,8 @@
     class MonitoringCtrl {
         map: L.Map;
         clients: Models.IClient[];
-        positions: Models.Position[];
+        positions: Models.IPosition[];
+        noitifications: Models.INotification[];
 
         static $inject = ['$scope', '$state'];
 
@@ -16,6 +17,7 @@
             var socket = io.connect(socketUrl);
 
             socket.emit('set clients', null);
+            socket.emit('set notifications', null);
 
             socket.on('get clients', (data) => {
                 $scope.$apply(() => {
@@ -24,6 +26,10 @@
                     for (var i = 0; i < this.clients.length; i++)
                         socket.emit('set latest position', this.clients[i].device.serial);
                 }); 
+            });
+
+            socket.on('get notifications', (data) => {
+                this.noitifications = <Array<Models.INotification>>data;
             });
 
             socket.on('update position', (data) => {
@@ -37,6 +43,10 @@
                     this.onUpdateClient(data);
                     socket.emit('set latest position', data.device.serial);
                 });
+            });
+
+            socket.on('notify', (data) => {
+
             });
         }
 

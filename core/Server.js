@@ -4,6 +4,7 @@ const http = require("http");
 const socketio = require("socket.io");
 const Device_1 = require("./Device");
 const ClientController_1 = require("../controllers/ClientController");
+const NotificationController_1 = require("../controllers/NotificationController");
 class Server {
     constructor(app) {
         this.devices = {};
@@ -41,6 +42,9 @@ class Server {
                     clients.push(this.devices[keys[i]].client);
                 socket.emit('get clients', clients);
             });
+            socket.on('set notifications', () => {
+                this.getNotifications();
+            });
             socket.on('set latest position', (data) => {
                 var device = this.devices[data];
                 if (!device)
@@ -63,6 +67,11 @@ class Server {
             this.devices[serial] = device;
             device.io.emit('update client', client);
             console.log('Device %s is authenticated', serial);
+        });
+    }
+    getNotifications() {
+        NotificationController_1.default.findAll({}).then(res => {
+            this.io.emit('get notifications', res.map(e => e.toJSON()));
         });
     }
 }

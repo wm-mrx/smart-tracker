@@ -3,6 +3,7 @@ import { IPosition } from '../models/Position';
 import { IClient } from '../models/Client';
 import { INotification } from '../models/Notification';
 import PositionController from '../controllers/PositionController';
+import NotificationController from '../controllers/NotificationController';
 
 interface ICommand {
     serial: string;
@@ -153,7 +154,17 @@ export default class Device {
     }
     
     onLowBattery(command: ICommand): void {
+        var notification: INotification = {
+            id: null,
+            clientId: this.client.id,
+            date: new Date(),
+            message: 'Low battery alert',
+            type: 'lowBattery'
+        }
 
+        NotificationController.save(notification).then(res => {
+            this.io.emit('notify', notification);
+        });
     }
 
     getLastPosition(): void {
