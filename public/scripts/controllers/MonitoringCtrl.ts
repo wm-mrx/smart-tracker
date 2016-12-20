@@ -69,7 +69,8 @@
                 return;
             }
 
-            exisitingPosition = newPosition;
+            newPosition.marker = exisitingPosition.marker;
+            angular.copy(newPosition, exisitingPosition);
             exisitingPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
         }
 
