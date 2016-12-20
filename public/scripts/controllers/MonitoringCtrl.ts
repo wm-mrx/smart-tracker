@@ -58,8 +58,6 @@
             var newPosition = new Models.Position(data);
             var exisitingPosition = this.getPosition(this.positions, newPosition.clientId);
 
-            newPosition.marker = exisitingPosition.marker;
-
             if (!exisitingPosition) {
                 var marker = this.createMarker(newPosition.latitude, newPosition.longitude);
                 var popup = '<p>' + newPosition.client.firstName + ' ' + newPosition.client.lastName + '</p>';
@@ -71,6 +69,7 @@
                 return;
             }
 
+            newPosition.marker = exisitingPosition.marker;
             exisitingPosition = newPosition;
             exisitingPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
         }
