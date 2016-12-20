@@ -22,7 +22,7 @@
                                             <a href="#" ng-click="ctrl.focusToClient(client)"><i class="fa fa-mobile"></i> {{client.firstName}} {{client.lastName}} ({{client.device.serial}})</a>
                                             -
                                             <a href="#" ng-click="ctrl.showHistory(client)">
-                                               history
+                                                history
                                             </a>
                                         </td>
                                     </tr>
@@ -46,6 +46,8 @@
                     <div class="widget-body no-padding">
                         <div class="widget-body-toolbar">
                             <div class="map" id="map"></div>
+                        </div>
+                        <div class="widget-body-toolbar">
                             <div class="table-responsive">
                                 <table class="table table-condensed table-bordered">
                                     <thead>
@@ -59,6 +61,7 @@
                                             <th style="text-align: center">Positioning</th>
                                             <th style="text-align: center">Battery</th>
                                             <th style="text-align: center">Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,6 +93,11 @@
                                             <td>
                                                 {{position.date | date: 'yyyy-MM-dd hh:mm:ss'}}
                                             </td>
+                                            <td>
+                                                <button class="btn btn-primary" ng-class="ctrl.positioning(position)">
+                                                    <i class="fa fa-send"></i> Positioning
+                                                </button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -101,8 +109,6 @@
         </article>
     </div>
 </section>
-
-
 <!--
 <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">

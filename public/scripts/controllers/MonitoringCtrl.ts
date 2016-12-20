@@ -69,6 +69,7 @@
                 return;
             }
 
+            exisitingPosition = newPosition;
             exisitingPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
         }
 
