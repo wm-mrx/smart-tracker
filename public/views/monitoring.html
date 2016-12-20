@@ -64,39 +64,39 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="log in ctrl.logs">
+                                        <tr ng-repeat="position in ctrl.positions">
                                             <td>
-                                                {{log.client.firstName}} {{log.client.lastName}}
+                                                {{position.firstName}} {{position.lastName}}
                                             </td>
                                             <td>
-                                                {{log.client.passportNo}}
+                                                {{}position.passportNo}}
                                             </td>
                                             <td>
-                                                {{log.latitude}}
+                                                {{position.latitude}}
                                             </td>
                                             <td>
-                                                {{log.longitude}}
+                                                {{position.longitude}}
                                             </td>
                                             <td>
-                                                {{log.speed}}
+                                                {{position.speed}}
                                             </td>
                                             <td>
-                                                {{log.direction}}
+                                                {{position.direction}}
                                             </td>
                                             <td>
-                                                {{log.transmissionMode}}
+                                                {{position.transmissionMode}}
                                             </td>
                                             <td>
-                                                {{log.positioningMode}}
+                                                {{position.positioningMode}}
                                             </td>
                                             <td>
-                                                {{log.positioningType}}
+                                                {{position.positioningType}}
                                             </td>
                                             <td>
-                                                {{log.signalQuality}}
+                                                {{position.signalQuality}}
                                             </td>
                                             <td>
-                                                {{log.date | date: 'yyyy-MM-dd hh:mm:ss'}}
+                                                {{position.date | date: 'yyyy-MM-dd hh:mm:ss'}}
                                             </td>
                                         </tr>
                                     </tbody>
