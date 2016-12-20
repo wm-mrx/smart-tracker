@@ -5,48 +5,48 @@
         map: L.Map;
         clients: Models.IClient[];
         positions: Models.IPosition[];
-        noitifications: Models.INotification[];
+        socket: Socket;
 
-        static $inject = ['$scope', '$state'];
+        static $inject = ['$scope', '$state', 'Notification'];
 
-        constructor(public $scope, public $state) {
+        constructor(public $scope, public $state, Notification) {
             this.clients = [];
             this.positions = [];
             this.createMap(-6.24771, 106.9353617);
+            
+            this.socket = io.connect(socketUrl);
 
-            var socket = io.connect(socketUrl);
-
-            socket.emit('set clients', null);
-            socket.emit('set notifications', null);
-
-            socket.on('get clients', (data) => {
+            this.socket.emit('set clients', null);
+            
+            this.socket.on('get clients', (data) => {
                 $scope.$apply(() => {
                     this.onGetClients(data);
 
                     for (var i = 0; i < this.clients.length; i++)
-                        socket.emit('set latest position', this.clients[i].device.serial);
+                        this.socket.emit('set latest position', this.clients[i].device.serial);
                 }); 
             });
-
-            socket.on('get notifications', (data) => {
-                this.noitifications = <Array<Models.INotification>>data;
-            });
-
-            socket.on('update position', (data) => {
+    
+            this.socket.on('update position', (data) => {
                 $scope.$apply(() => {
                     this.onUpdatePosition(data);
                 });
             });
 
-            socket.on('update client', (data) => {
+            this.socket.on('update client', (data) => {
                 $scope.$apply(() => {
                     this.onUpdateClient(data);
-                    socket.emit('set latest position', data.device.serial);
+                    this.socket.emit('set latest position', data.device.serial);
                 });
             });
 
-            socket.on('notify', (data) => {
+            this.socket.on('notify', (data) => {
+                $scope.$apply(() => {
+                    var client = this.getClient(this.clients, data.clientId);
 
+                    if (client) 
+                        Notification.success('Notification from: ' + client.device.serial + ' ' + data.message);
+                });
             });
         }
 
@@ -97,6 +97,10 @@
             this.map = L.map('map', { center: L.latLng(latCenter, lngCenter), zoom: 12, zoomControl: false });
             this.map.addControl(control);
             osm.addTo(this.map);
+        }
+
+        positioning(client: Models.IClient): void {
+            this.socket.emit('request position', client.device.serial);
         }
     }
 

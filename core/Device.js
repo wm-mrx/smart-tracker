@@ -126,8 +126,11 @@ class Device {
             type: 'lowBattery'
         };
         NotificationController_1.default.save(notification).then(res => {
+            this.onLinkOk(command);
             this.io.emit('notify', notification);
         });
+    }
+    onPositioning() {
     }
     getLastPosition() {
         PositionController_1.default.findLatestByClient(this.client.id).then(res => {
@@ -144,6 +147,9 @@ class Device {
             serial: commands[1],
             messages: commands.slice(2, commands.length - 1)
         };
+    }
+    generateVerificationCode(messages) {
+        return null;
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

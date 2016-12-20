@@ -3,37 +3,38 @@ var SmartTracker;
     var Controllers;
     (function (Controllers) {
         class MonitoringCtrl {
-            constructor($scope, $state) {
+            constructor($scope, $state, Notification) {
                 this.$scope = $scope;
                 this.$state = $state;
                 this.clients = [];
                 this.positions = [];
                 this.createMap(-6.24771, 106.9353617);
-                var socket = io.connect(SmartTracker.socketUrl);
-                socket.emit('set clients', null);
-                socket.emit('set notifications', null);
-                socket.on('get clients', (data) => {
+                this.socket = io.connect(SmartTracker.socketUrl);
+                this.socket.emit('set clients', null);
+                this.socket.on('get clients', (data) => {
                     $scope.$apply(() => {
                         this.onGetClients(data);
                         for (var i = 0; i < this.clients.length; i++)
-                            socket.emit('set latest position', this.clients[i].device.serial);
+                            this.socket.emit('set latest position', this.clients[i].device.serial);
                     });
                 });
-                socket.on('get notifications', (data) => {
-                    this.noitifications = data;
-                });
-                socket.on('update position', (data) => {
+                this.socket.on('update position', (data) => {
                     $scope.$apply(() => {
                         this.onUpdatePosition(data);
                     });
                 });
-                socket.on('update client', (data) => {
+                this.socket.on('update client', (data) => {
                     $scope.$apply(() => {
                         this.onUpdateClient(data);
-                        socket.emit('set latest position', data.device.serial);
+                        this.socket.emit('set latest position', data.device.serial);
                     });
                 });
-                socket.on('notify', (data) => {
+                this.socket.on('notify', (data) => {
+                    $scope.$apply(() => {
+                        var client = this.getClient(this.clients, data.clientId);
+                        if (client)
+                            Notification.success('Notification from: ' + client.device.serial + ' ' + data.message);
+                    });
                 });
             }
             onGetClients(data) {
@@ -74,8 +75,11 @@ var SmartTracker;
                 this.map.addControl(control);
                 SmartTracker.osm.addTo(this.map);
             }
+            positioning(client) {
+                this.socket.emit('request position', client.device.serial);
+            }
         }
-        MonitoringCtrl.$inject = ['$scope', '$state'];
+        MonitoringCtrl.$inject = ['$scope', '$state', 'Notification'];
         SmartTracker.smartTracker.controller('MonitoringCtrl', MonitoringCtrl);
     })(Controllers = SmartTracker.Controllers || (SmartTracker.Controllers = {}));
 })(SmartTracker || (SmartTracker = {}));

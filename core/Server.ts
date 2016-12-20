@@ -67,6 +67,15 @@ export default class Server {
 
                 device.getLastPosition();
             });
+
+            socket.on('request position', (data) => {
+                var device: Device = this.devices[data];
+
+                if (!device)
+                    return;
+
+                device.onPositioning();
+            });
         });
 
         this.clientServer.listen(port, () => {

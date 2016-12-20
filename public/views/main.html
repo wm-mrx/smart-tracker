@@ -44,7 +44,12 @@
                     <span class="menu-item-parent">Monitoring</span>
                 </a>
             </li>
-
+            <li ui-sref-active="active">
+                <a ui-sref="site.main.notification">
+                    <i class="fa fa-lg fa-fw fa-envelope"></i>
+                    <span class="menu-item-parent">Notification</span>
+                </a>
+            </li>
             <li ng-controller="LoginCtrl as LoginCtrl">
                 <a href="#" ng-click="LoginCtrl.logout()">
                     <i class="fa fa-lg fa-fw fa-power-off"></i>

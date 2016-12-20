@@ -163,8 +163,13 @@ export default class Device {
         }
 
         NotificationController.save(notification).then(res => {
+            this.onLinkOk(command);
             this.io.emit('notify', notification);
         });
+    }
+
+    onPositioning(): void {
+        
     }
 
     getLastPosition(): void {
@@ -185,5 +190,9 @@ export default class Device {
             serial: commands[1],
             messages: commands.slice(2, commands.length - 1)
         }
+    }
+
+    generateVerificationCode(messages: any[]): any {
+        return null;
     }
 }

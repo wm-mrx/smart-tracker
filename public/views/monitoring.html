@@ -22,7 +22,7 @@
                                             <a href="#" ng-click="ctrl.focusToClient(client)"><i class="fa fa-mobile"></i> {{client.firstName}} {{client.lastName}} ({{client.device.serial}})</a>
                                             -
                                             <a href="#" ng-click="ctrl.showHistory(client)">
-                                                show history
+                                               history
                                             </a>
                                         </td>
                                     </tr>
@@ -55,10 +55,8 @@
                                             <th style="text-align: center">Latitude</th>
                                             <th style="text-align: center">Longitude</th>
                                             <th style="text-align: center">Speed</th>
-                                            <th style="text-align: center">Direction</th>
                                             <th style="text-align: center">Transmission</th>
                                             <th style="text-align: center">Positioning</th>
-                                            <th style="text-align: center">Type</th>
                                             <th style="text-align: center">Battery</th>
                                             <th style="text-align: center">Date</th>
                                         </tr>
@@ -81,16 +79,10 @@
                                                 {{position.speed}}
                                             </td>
                                             <td>
-                                                {{position.direction}}
-                                            </td>
-                                            <td>
                                                 {{position.transmissionMode}}
                                             </td>
                                             <td>
                                                 {{position.positioningMode}}
-                                            </td>
-                                            <td>
-                                                {{position.positioningType}}
                                             </td>
                                             <td>
                                                 {{position.batteryLevel}} %

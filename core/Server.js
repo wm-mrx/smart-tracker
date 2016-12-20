@@ -51,6 +51,12 @@ class Server {
                     return;
                 device.getLastPosition();
             });
+            socket.on('request position', (data) => {
+                var device = this.devices[data];
+                if (!device)
+                    return;
+                device.onPositioning();
+            });
         });
         this.clientServer.listen(port, () => {
             console.log('Client server is running on port %s', port);
