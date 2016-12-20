@@ -153,7 +153,7 @@ export default class Device {
                 return;
 
             var position = res.toJSON();
-            this.io.emit('get latest position', position);
+            this.io.emit('update position', position);
         });
     }
 

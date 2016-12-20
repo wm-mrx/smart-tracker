@@ -3,70 +3,73 @@ var SmartTracker;
     var Controllers;
     (function (Controllers) {
         class MonitoringCtrl {
-            constructor($scope, $state, principal) {
+            constructor($scope, $state) {
                 this.$scope = $scope;
                 this.$state = $state;
-                this.principal = principal;
-                this.markers = [];
-                this.logs = [];
-                this.initMap();
-                principal.identity().then((identity) => {
-                    this.initSocket(identity);
-                });
-            }
-            initSocket(identity) {
-                var scope = this.$scope;
-                var socket = io.connect(SmartTracker.socketUrl);
+                this.clients = [];
+                this.positions = [];
+                this.createMap(-6.24771, 106.9353617);
+                var socket = SmartTracker.io.connect(SmartTracker.socketUrl);
                 socket.emit('set clients', null);
                 socket.on('get clients', (data) => {
-                    this.clients = [];
-                    scope.$apply(() => {
-                        var clients = data;
-                        clients.forEach(client => {
-                            this.clients.push(client);
-                            socket.emit('set latest position', client.device.serial);
-                        });
-                    });
-                });
-                socket.on('get latest position', (data) => {
-                    scope.$apply(() => {
-                        var position = new SmartTracker.Models.Position(data);
-                        var existingMarker = this.markers.filter(e => e['clientId'] == position.clientId)[0];
-                        var existingLog = this.logs.filter(e => e['clientId'] == position.clientId)[0];
-                        if (!existingMarker) {
-                            var marker = this.createMarker(position.latitude, position.longitude);
-                            marker.bindPopup('<p>' + position.client.firstName + ' ' + position.client.lastName + '</p>', { autoClose: false }).addTo(this.map);
-                            this.markers.push(marker);
-                            this.logs.push(position);
-                            return;
-                        }
-                        existingLog = position;
-                        existingMarker.setLatLng([position.latitude, position.longitude]);
+                    $scope.$apply(() => {
+                        this.onGetClients(data);
+                        for (var i = 0; i < this.clients.length; i++)
+                            socket.emit('set latest position', this.clients[i].device.serial);
                     });
                 });
                 socket.on('update position', (data) => {
+                    $scope.$apply(() => {
+                        this.onUpdatePosition(data);
+                    });
                 });
                 socket.on('update client', (data) => {
-                    scope.$apply(() => {
-                        var client = new SmartTracker.Models.Client(data);
-                        var existingClient = this.clients.filter(e => e.id == client.id)[0];
-                        if (!existingClient)
-                            this.clients.push(client);
-                        socket.emit('set latest position', client.device.serial);
+                    $scope.$apply(() => {
+                        this.onUpdateClient(data);
+                        socket.emit('set latest position', data.device.serial);
                     });
                 });
             }
-            initMap() {
-                var control = L.control.layers({ "Osm": SmartTracker.osm, "Satellite": SmartTracker.satellite });
-                this.map = L.map('map', { center: L.latLng(-6.24771, 106.9353617), zoom: 12, zoomControl: false });
-                this.map.addControl(control);
-                SmartTracker.osm.addTo(this.map);
+            onGetClients(data) {
+                this.clients = data;
+            }
+            onUpdatePosition(data) {
+                var newPosition = new SmartTracker.Models.Position(data);
+                var exisitingPosition = this.getPosition(this.positions, newPosition.clientId);
+                if (!exisitingPosition) {
+                    var marker = this.createMarker(newPosition.latitude, newPosition.longitude);
+                    var popup = '<p>' + newPosition.client.firstName + ' ' + newPosition.client.lastName + '</p>';
+                    marker.bindPopup(popup, { zoomAnimation: true });
+                    newPosition.marker = marker.addTo(this.map);
+                    newPosition.marker.openPopup();
+                    this.positions.push(newPosition);
+                    return;
+                }
+                exisitingPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
+            }
+            onUpdateClient(data) {
+                var newClient = new SmartTracker.Models.Client(data);
+                var existingClient = this.getClient(this.clients, newClient.id);
+                if (!existingClient)
+                    this.clients.push(newClient);
+            }
+            getClient(clients, clientId) {
+                return clients.filter(e => e.id == clientId)[0];
+            }
+            getPosition(positions, clientId) {
+                return positions.filter(e => e.clientId == clientId)[0];
             }
             createMarker(latitude, longitude) {
                 return L.marker([latitude, longitude]);
             }
+            createMap(latCenter, lngCenter) {
+                var control = L.control.layers({ "Osm": SmartTracker.osm, "Satellite": SmartTracker.satellite });
+                this.map = L.map('map', { center: L.latLng(latCenter, lngCenter), zoom: 12, zoomControl: false });
+                this.map.addControl(control);
+                SmartTracker.osm.addTo(this.map);
+            }
         }
-        MonitoringCtrl.$inject = ['$scope', '$state', 'principal'];
+        MonitoringCtrl.$inject = ['$scope', '$state'];
         SmartTracker.smartTracker.controller('MonitoringCtrl', MonitoringCtrl);
     })(Controllers = SmartTracker.Controllers || (SmartTracker.Controllers = {}));
 })(SmartTracker || (SmartTracker = {}));

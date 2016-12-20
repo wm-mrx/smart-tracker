@@ -117,7 +117,7 @@ class Device {
             if (!res)
                 return;
             var position = res.toJSON();
-            this.io.emit('get latest position', position);
+            this.io.emit('update position', position);
         });
     }
     parse(data) {

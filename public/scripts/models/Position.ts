@@ -3,6 +3,7 @@
         id: number;
         clientId: number;
         client?: any;
+        marker: L.Marker;
         latitude: number;
         longitude: number;
         speed?: number;
@@ -19,6 +20,7 @@
         id: number;
         clientId: number;
         client: any;
+        marker: L.Marker;
         latitude: number;
         longitude: number;
         speed?: number;
@@ -34,6 +36,7 @@
             this.id = data ? data.id : null;
             this.clientId = data ? data.clientId : null;
             this.client = data ? data.client : null;
+            this.marker = data ? data.marker : null;
             this.latitude = data ? data.latitude : null;
             this.longitude = data ? data.longitude : null;
             this.speed = data ? data.speed : null;

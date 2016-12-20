@@ -19,9 +19,9 @@
                                 <tbody>
                                     <tr ng-repeat="client in ctrl.clients">
                                         <td>
-                                            <a href="#" ng-click="ctrl.markerInfo(client)"><i class="fa fa-mobile"></i> {{client.firstName}} {{client.lastName}}</a>
+                                            <a href="#" ng-click="ctrl.focusToClient(client)"><i class="fa fa-mobile"></i> {{client.firstName}} {{client.lastName}} ({{client.device.serial}})</a>
                                             -
-                                            <a href="#" ng-click="ctrl.redirectHistory(client)">
+                                            <a href="#" ng-click="ctrl.showHistory(client)">
                                                 show history
                                             </a>
                                         </td>
@@ -66,7 +66,7 @@
                                     <tbody>
                                         <tr ng-repeat="log in ctrl.logs">
                                             <td>
-                                                {{log.client.firstName}} - {{log.client.lastName}}
+                                                {{log.client.firstName}} {{log.client.lastName}}
                                             </td>
                                             <td>
                                                 {{log.client.passportNo}}

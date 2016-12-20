@@ -7,6 +7,7 @@ var SmartTracker;
                 this.id = data ? data.id : null;
                 this.clientId = data ? data.clientId : null;
                 this.client = data ? data.client : null;
+                this.marker = data ? data.marker : null;
                 this.latitude = data ? data.latitude : null;
                 this.longitude = data ? data.longitude : null;
                 this.speed = data ? data.speed : null;
