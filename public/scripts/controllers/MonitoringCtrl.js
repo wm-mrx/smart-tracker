@@ -52,6 +52,7 @@ var SmartTracker;
                     this.positions.push(newPosition);
                     return;
                 }
+                newPosition.client = exisitingPosition.client;
                 newPosition.marker = exisitingPosition.marker;
                 newPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
                 var existingIndex = this.positions.indexOf(exisitingPosition);
