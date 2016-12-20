@@ -136,9 +136,9 @@ class Device {
         var year = dt.getFullYear();
         var month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : (dt.getMonth() + 1);
         var date = dt.getDate();
-        var hour = dt.getHours();
-        var min = dt.getMinutes();
-        var second = dt.getSeconds();
+        var hour = dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours();
+        var min = dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes();
+        var second = dt.getSeconds() < 10 ? '0' + dt.getSeconds() : dt.getSeconds();
         var fullDate = year + '-' + month + '-' + date;
         var time = hour + ':' + min + ':' + second;
         var body = this.client.device.serial + ';' + this.client.device.imsi + ';000000;'
