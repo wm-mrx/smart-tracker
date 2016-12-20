@@ -59,7 +59,7 @@
                                             <th style="text-align: center">Transmission</th>
                                             <th style="text-align: center">Positioning</th>
                                             <th style="text-align: center">Type</th>
-                                            <th style="text-align: center">Signal</th>
+                                            <th style="text-align: center">Battery</th>
                                             <th style="text-align: center">Date</th>
                                         </tr>
                                     </thead>
@@ -93,7 +93,7 @@
                                                 {{position.positioningType}}
                                             </td>
                                             <td>
-                                                {{position.signalQuality}}
+                                                {{position.batteryLevel}} %
                                             </td>
                                             <td>
                                                 {{position.date | date: 'yyyy-MM-dd hh:mm:ss'}}
