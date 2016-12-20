@@ -53,8 +53,10 @@ var SmartTracker;
                     return;
                 }
                 newPosition.marker = exisitingPosition.marker;
-                exisitingPosition = newPosition;
-                exisitingPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
+                newPosition.marker.setLatLng([newPosition.latitude, newPosition.longitude]);
+                var existingIndex = this.positions.indexOf(exisitingPosition);
+                if (existingIndex > -1)
+                    this.positions[existingIndex] = newPosition;
             }
             onUpdateClient(data) {
                 var newClient = new SmartTracker.Models.Client(data);
