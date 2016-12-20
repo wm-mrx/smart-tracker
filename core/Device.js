@@ -169,6 +169,9 @@ class Device {
         for (var i = 0; i < characters.length; i++)
             total += characters[i].charCodeAt(null);
         total %= 100;
+        total -= 100;
+        if (total < 0)
+            return '0x2d0x' + Math.abs(total).toString(16);
         return '0x' + (total - 100).toString(16);
     }
 }
