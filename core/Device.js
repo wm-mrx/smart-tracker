@@ -13,7 +13,8 @@ class Device {
             syncTime: '#@H20@#',
             syncSms: '#@H06@#',
             terminalHeartRate: '#@H10@#',
-            transmitWifiData: '#@H14@#'
+            transmitWifiData: '#@H14@#',
+            lowBattery: '#@H05@#'
         };
         this.positioningType = {
             0: 'First positioning',
@@ -55,6 +56,9 @@ class Device {
                 break;
             case this.state.transmitWifiData:
                 this.onLinkOk(command);
+                break;
+            case this.state.lowBattery:
+                this.onLowBattery(command);
                 break;
             default:
                 this.socket.emit('log error', 'Command is not found');
@@ -111,6 +115,8 @@ class Device {
         });
     }
     onLbs(command) {
+    }
+    onLowBattery(command) {
     }
     getLastPosition() {
         PositionController_1.default.findLatestByClient(this.client.id).then(res => {

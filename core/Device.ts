@@ -1,6 +1,7 @@
 ﻿import * as net from 'net';
 import { IPosition } from '../models/Position';
 import { IClient } from '../models/Client';
+import { INotification } from '../models/Notification';
 import PositionController from '../controllers/PositionController';
 
 interface ICommand {
@@ -29,7 +30,8 @@ export default class Device {
             syncTime: '#@H20@#',
             syncSms: '#@H06@#',
             terminalHeartRate: '#@H10@#',
-            transmitWifiData: '#@H14@#'
+            transmitWifiData: '#@H14@#',
+            lowBattery: '#@H05@#'
         }
 
         this.positioningType = {
@@ -75,6 +77,9 @@ export default class Device {
                 break;
             case this.state.transmitWifiData:
                 this.onLinkOk(command);
+                break;
+            case this.state.lowBattery:
+                this.onLowBattery(command);
                 break;
             default:
                 this.socket.emit('log error', 'Command is not found');
@@ -144,6 +149,10 @@ export default class Device {
     }
 
     onLbs(command: ICommand): void {
+
+    }
+    
+    onLowBattery(command: ICommand): void {
 
     }
 
