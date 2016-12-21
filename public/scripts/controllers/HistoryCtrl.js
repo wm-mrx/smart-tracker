@@ -68,6 +68,7 @@ var SmartTracker;
                         var position = this.positions[this.counter];
                         marker.setLatLng([position.latitude, position.longitude]);
                         polyline.addLatLng([position.latitude, position.longitude]);
+                        this.counter++;
                     });
                 }, 2000);
             }
