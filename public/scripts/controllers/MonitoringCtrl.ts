@@ -60,8 +60,6 @@
 
             if (!exisitingPosition) {
                 var marker = this.createMarker(newPosition.latitude, newPosition.longitude);
-                var popup = '<p>' + newPosition.client.firstName + ' ' + newPosition.client.lastName + '</p>';
-                marker.bindPopup(popup, {zoomAnimation: true});
                 newPosition.marker = marker.addTo(this.map);
                 newPosition.marker.openPopup();
 

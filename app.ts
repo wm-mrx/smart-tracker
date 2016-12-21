@@ -50,6 +50,14 @@ app.get('/smartracker/monitoring', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
+app.get('/smartracker/notification', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
+
+app.get('/smartracker/history', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
+
 import userRoutes from './routes/UserRoutes';
 import deviceRoutes from './routes/DeviceRoutes';
 import clientRoutes from './routes/ClientRoutes';

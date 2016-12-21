@@ -45,8 +45,6 @@ var SmartTracker;
                 var exisitingPosition = this.getPosition(this.positions, newPosition.clientId);
                 if (!exisitingPosition) {
                     var marker = this.createMarker(newPosition.latitude, newPosition.longitude);
-                    var popup = '<p>' + newPosition.client.firstName + ' ' + newPosition.client.lastName + '</p>';
-                    marker.bindPopup(popup, { zoomAnimation: true });
                     newPosition.marker = marker.addTo(this.map);
                     newPosition.marker.openPopup();
                     this.positions.push(newPosition);

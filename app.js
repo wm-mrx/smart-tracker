@@ -39,6 +39,12 @@ app.get('/smartracker/client', (req, res) => {
 app.get('/smartracker/monitoring', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
+app.get('/smartracker/notification', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
+app.get('/smartracker/history', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
 const UserRoutes_1 = require("./routes/UserRoutes");
 const DeviceRoutes_1 = require("./routes/DeviceRoutes");
 const ClientRoutes_1 = require("./routes/ClientRoutes");

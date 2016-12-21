@@ -30,7 +30,7 @@
                                                 <input type="text"
                                                        ng-model="ctrl.filters.name"
                                                        placeholder="First Name"
-                                                       uib-typeahead="data as data.name for data in ctrl.queryClient($viewValue)"
+                                                       uib-typeahead="data as data.firstName + ' ' + data.lastName for data in ctrl.queryClient($viewValue)"
                                                        typeahead-min-length="2"
                                                        typeahead-loading="senderFilter" class="form-control" />
                                                 <i ng-show="senderFilter" class="glyphicon glyphicon-refresh"></i>
