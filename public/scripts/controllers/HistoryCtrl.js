@@ -24,8 +24,8 @@ var SmartTracker;
                     this.query['clientId'] = this.filters.client.id;
                 SmartTracker.Services.Position.FindAll(this.query).then(res => {
                     this.positions = res.data;
-                    this.updateMarker(this.positions[0].latitude, this.positions[0].longitude);
-                    this.setLine(this.positions[0].latitude, this.positions[0].longitude);
+                    this.createMarker(this.positions[0].latitude, this.positions[0].longitude);
+                    this.createPolyLine(this.positions[0].latitude, this.positions[0].longitude);
                 });
             }
             clearFilters() {
