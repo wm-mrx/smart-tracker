@@ -10,6 +10,8 @@ var SmartTracker;
                 this.showToolbar = true;
                 this.counter = 0;
                 this.clearFilters();
+                this.marker = null;
+                this.polyline = null;
                 this.createMap(-6.24771, 106.9353617);
             }
             filter() {
