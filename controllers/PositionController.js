@@ -23,6 +23,10 @@ class PositionController extends BaseController_1.default {
     applyQuery(query) {
         var where = {};
         var options = { where: where, include: this.includes };
+        if (query['clientId'])
+            where['clientId'] = query['clientId'];
+        if (query['from'] && query['to'])
+            where['date'] = { $between: [new Date(query['from']), new Date(query['to'])] };
         if (query['limit'] && query['skip']) {
             options.limit = query['limit'];
             options.offset = query['skip'];

@@ -79,6 +79,14 @@
                 url: '/monitoring',
                 templateUrl: root + '/views/monitoring.html',
                 controller: 'MonitoringCtrl as ctrl'
+            }).state('site.main.notification', {
+                url: '/notification',
+                templateUrl: root + '/views/notification.html',
+                controller: 'NotificationCtrl as ctrl'
+            }).state('site.main.history', {
+                url: '/history',
+                templateUrl: root + '/views/history.html',
+                controller: 'HistoryCtrl as ctrl'
             });
      }]);
 

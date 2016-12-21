@@ -67,6 +67,14 @@ var SmartTracker;
                 url: '/monitoring',
                 templateUrl: SmartTracker.root + '/views/monitoring.html',
                 controller: 'MonitoringCtrl as ctrl'
+            }).state('site.main.notification', {
+                url: '/notification',
+                templateUrl: SmartTracker.root + '/views/notification.html',
+                controller: 'NotificationCtrl as ctrl'
+            }).state('site.main.history', {
+                url: '/history',
+                templateUrl: SmartTracker.root + '/views/history.html',
+                controller: 'HistoryCtrl as ctrl'
             });
         }]);
     var authorization = ($rootScope, $state, $location, principal) => {

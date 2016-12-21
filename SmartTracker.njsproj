@@ -117,6 +117,7 @@
     <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="public\views\history.html" />
     <Content Include="public\views\index.html" />
     <Content Include="public\views\login.html" />
     <Content Include="public\views\main.html" />
@@ -147,6 +148,7 @@
     <TypeScriptCompile Include="public\scripts\controllers\IndexCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\LoginCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\controllers\MonitoringCtrl.ts" />
+    <TypeScriptCompile Include="public\scripts\controllers\HistoryCtrl.ts" />
     <TypeScriptCompile Include="public\scripts\Layer.ts" />
     <TypeScriptCompile Include="public\scripts\models\Client.ts" />
     <TypeScriptCompile Include="public\scripts\models\Device.ts" />

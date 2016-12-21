@@ -99,19 +99,14 @@
             return L.marker([latitude, longitude]);
         }
 
-        createMap(latCenter: number, lngCenter: number): void {
+        createMap(latitude: number, longitude: number): void {
             var control = L.control.layers({ "Osm": osm, "Satellite": satellite });
-            this.map = L.map('map', { center: L.latLng(latCenter, lngCenter), zoom: 12, zoomControl: false });
+            this.map = L.map('map', { center: L.latLng(latitude, longitude), zoom: 12, zoomControl: false });
             this.map.addControl(control);
             osm.addTo(this.map);
         }
 
-        positioning(position: Models.IPosition): void {
-            var client = this.getClient(this.clients, position.clientId);
-
-            if (!client)
-                return;
-
+        positioning(client: Models.IClient): void {
             this.socket.emit('positioning', client.device.serial);
         }
     }
