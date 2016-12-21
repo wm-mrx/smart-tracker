@@ -3,9 +3,11 @@ var SmartTracker;
     var Controllers;
     (function (Controllers) {
         class HistoryCtrl {
-            constructor($scope, $state) {
+            constructor($scope, $state, Notification) {
                 this.$scope = $scope;
+                this.Notification = Notification;
                 this.tracking = false;
+                this.showToolbar = true;
                 this.counter = 0;
                 this.clearFilters();
                 this.createMap(-6.24771, 106.9353617);
@@ -49,6 +51,10 @@ var SmartTracker;
                 SmartTracker.osm.addTo(this.map);
             }
             start() {
+                if (!this.positions || !this.marker || !this.polyline) {
+                    this.Notification.error('Client has not been set yet');
+                    return;
+                }
                 this.tracking = !this.tracking;
                 if (!this.tracking) {
                     this.stop();
@@ -81,9 +87,14 @@ var SmartTracker;
             stop() {
                 clearInterval(this.timer);
             }
+            queryClient(query) {
+                return SmartTracker.Services.Client.FindAll({ firstName: query, lastName: query }).then(res => {
+                    return res.data;
+                });
+            }
         }
-        HistoryCtrl.$inject = ['$scope', '$state'];
-        SmartTracker.smartTracker.controller('HistroyCtrl', HistoryCtrl);
+        HistoryCtrl.$inject = ['$scope', '$state', 'Notification'];
+        SmartTracker.smartTracker.controller('HistoryCtrl', HistoryCtrl);
     })(Controllers = SmartTracker.Controllers || (SmartTracker.Controllers = {}));
 })(SmartTracker || (SmartTracker = {}));
 //# sourceMappingURL=HistoryCtrl.js.map

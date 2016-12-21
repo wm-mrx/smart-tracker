@@ -7,13 +7,15 @@
         filters: any;
         query: any;
         tracking: boolean;
+        showToolbar: boolean;
         timer: NodeJS.Timer;
         counter: number;
 
-        static $inject = ['$scope', '$state'];
+        static $inject = ['$scope', '$state', 'Notification'];
 
-        constructor(public $scope, $state) {
+        constructor(public $scope, $state, public Notification) {
             this.tracking = false;
+            this.showToolbar = true;
             this.counter = 0;
             this.clearFilters();
             this.createMap(-6.24771, 106.9353617);
@@ -68,6 +70,11 @@
         }
 
         start(): void {
+            if (!this.positions || !this.marker || !this.polyline) {
+                this.Notification.error('Client has not been set yet');
+                return;
+            }
+
             this.tracking = !this.tracking;
 
             if (!this.tracking) {
@@ -106,7 +113,13 @@
         stop(): void {
             clearInterval(this.timer);
         }
+
+        queryClient(query: string): any {
+            return Services.Client.FindAll({ firstName: query, lastName: query }).then(res => {
+                return res.data;
+            });
+        }
     }
 
-    smartTracker.controller('HistroyCtrl', HistoryCtrl);
+    smartTracker.controller('HistoryCtrl', HistoryCtrl);
 }

@@ -7,17 +7,33 @@
                         <i class="fa fa-users"></i>
                     </span>
                     <h2>Filter Client</h2>
+                    <div class="jarviswidget-ctrls" role="menu">
+                        <a href="#" ng-click="ctrl.showToolbar = !ctrl.showToolbar"
+                           ng-show="ctrl.showToolbar" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="minimize">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                        <a href="#" ng-click="ctrl.showToolbar = !ctrl.showToolbar"
+                           ng-show="!ctrl.showToolbar" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="maximize">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
                 </header>
                 <div>
                     <div class="jarviswidget-editbox"></div>
-                    <div class="widget-body no-padding">
+                    <div class="widget-body no-padding" ng-show="ctrl.showToolbar">
                         <div class="widget-body-toolbar">
                             <form class="smart-form">
                                 <fieldset>
                                     <div class="row">
                                         <section class="col-md-12">
                                             <label class="input">
-                                                <input type="text" placeholder="Client" />
+                                                <input type="text"
+                                                       ng-model="ctrl.filters.client"
+                                                       placeholder="Pengirim"
+                                                       uib-typeahead="data as data.name for data in ctrl.suggest('client', $viewValue)"
+                                                       typeahead-min-length="2"
+                                                       typeahead-loading="senderFilter" class="form-control" />
+                                                <i ng-show="senderFilter" class="glyphicon glyphicon-refresh"></i>
                                             </label>
                                         </section>
                                         <section class="col-md-12">
@@ -35,11 +51,14 @@
                             </form>
                         </div>
                         <div class="widget-body-toolbar">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" ng-click="ctrl.filter()">
                                 <i class="fa fa-search"></i> Filter
                             </button>
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" ng-click="ctrl.start()" ng-show="!ctrl.tracking">
                                 <i class="fa fa-play"></i> Start
+                            </button>
+                            <button class="btn btn-primary" ng-click="ctrl.stop()" ng-show="ctrl.tracking">
+                                <i class="fa fa-play"></i> Stop
                             </button>
                         </div>
                     </div>
@@ -54,6 +73,56 @@
                     </span>
                     <h2>Monitor</h2>
                 </header>
+                <div>
+                    <div class="jarviswidget-editbox"></div>
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar">
+                            <div class="map" id="map"></div>
+                        </div>
+                    </div>
+                    <div class="widget-body-toolbar">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center">Latitude</th>
+                                        <th style="text-align: center">Longitude</th>
+                                        <th style="text-align: center">Speed</th>
+                                        <th style="text-align: center">Transmission</th>
+                                        <th style="text-align: center">Positioning</th>
+                                        <th style="text-align: center">Battery</th>
+                                        <th style="text-align: center">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="position in ctrl.positions">
+                                        <td>
+                                            {{position.latitude}}
+                                        </td>
+                                        <td>
+                                            {{position.longitude}}
+                                        </td>
+                                        <td>
+                                            {{position.speed}}
+                                        </td>
+                                        <td>
+                                            {{position.transmissionMode}}
+                                        </td>
+                                        <td>
+                                            {{position.positioningMode}}
+                                        </td>
+                                        <td>
+                                            {{position.batteryLevel}} %
+                                        </td>
+                                        <td>
+                                            {{position.date | date: 'yyyy-MM-dd hh:mm:ss'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </article>
     </div>

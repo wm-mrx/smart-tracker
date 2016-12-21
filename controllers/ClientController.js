@@ -18,6 +18,10 @@ class ClientController extends BaseController_1.default {
     applyQuery(query) {
         var where = {};
         var options = { where: where, include: this.includes };
+        if (query['firstName'])
+            where['firstName'] = { $like: '%' + query['firstName'] + '%' };
+        if (query['lastName'])
+            where['lastName'] = { $like: '%' + query['lastName'] + '%' };
         if (query['limit'] && query['skip']) {
             options.limit = query['limit'];
             options.offset = query['skip'];
