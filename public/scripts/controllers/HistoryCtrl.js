@@ -24,27 +24,13 @@ var SmartTracker;
                     this.query['clientId'] = this.filters.client.id;
                 SmartTracker.Services.Position.FindAll(this.query).then(res => {
                     this.positions = res.data;
-                    this.createMarker(this.positions[0].latitude, this.positions[0].longitude);
-                    this.createPolyLine(this.positions[0].latitude, this.positions[0].longitude);
+                    var position = this.positions[0];
+                    this.marker = L.marker([position.latitude, position.longitude]).addTo(this.map);
+                    this.polyline = L.polyline([[position.latitude, position.longitude]]).addTo(this.map);
                 });
             }
             clearFilters() {
                 this.filters = { from: null, to: null, client: null };
-            }
-            createMarker(latitude, longitude) {
-                this.marker = L.marker([latitude, longitude]).addTo(this.map);
-            }
-            createPolyLine(latitude, longitude) {
-                this.polyline = L.polyline([[latitude, longitude]]).addTo(this.map);
-            }
-            updateMarker(latitude, longitude) {
-                this.marker.setLatLng([latitude, longitude]);
-            }
-            setLine(latitude, longitude) {
-                this.polyline.setLatLngs([[latitude, longitude]]);
-            }
-            addLine(latitude, longitude) {
-                this.polyline.addLatLng([latitude, longitude]);
             }
             createMap(latitude, longitude) {
                 var control = L.control.layers({ "Osm": SmartTracker.osm, "Satellite": SmartTracker.satellite });
@@ -62,14 +48,13 @@ var SmartTracker;
                     this.stop();
                     return;
                 }
-                var updateMarker = this.updateMarker;
-                var setLine = this.setLine;
-                var addLine = this.addLine;
+                var marker = this.marker;
+                var polyline = this.polyline;
                 this.timer = setInterval(() => {
                     if (this.counter === 0) {
                         var position = this.positions[0];
-                        updateMarker(position.latitude, position.longitude);
-                        setLine(position.latitude, position.longitude);
+                        marker.setLatLng([position.latitude, position.longitude]);
+                        polyline.setLatLngs([[position.latitude, position.longitude]]);
                     }
                     if (this.counter > this.positions.length - 1) {
                         this.$scope.$apply(() => {
@@ -81,8 +66,8 @@ var SmartTracker;
                     }
                     this.$scope.$apply(() => {
                         var position = this.positions[this.counter];
-                        updateMarker(position.latitude, position.longitude);
-                        addLine(position.latitude, position.longitude);
+                        marker.setLatLng([position.latitude, position.longitude]);
+                        polyline.addLatLng([position.latitude, position.longitude]);
                     });
                 }, 2000);
             }

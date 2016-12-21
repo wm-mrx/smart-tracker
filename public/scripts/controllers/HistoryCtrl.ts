@@ -35,33 +35,14 @@
 
             Services.Position.FindAll(this.query).then(res => {
                 this.positions = <Array<Models.IPosition>>res.data;
-                this.createMarker(this.positions[0].latitude, this.positions[0].longitude);
-                this.createPolyLine(this.positions[0].latitude, this.positions[0].longitude); 
+                var position = this.positions[0];
+                this.marker = L.marker([position.latitude, position.longitude]).addTo(this.map);
+                this.polyline = L.polyline([[position.latitude, position.longitude]]).addTo(this.map);
             });
         }
 
         clearFilters(): void {
             this.filters = { from: null, to: null, client: null };
-        }
-
-        createMarker(latitude: number, longitude: number): void {
-            this.marker = L.marker([latitude, longitude]).addTo(this.map);
-        }
-
-        createPolyLine(latitude: number, longitude: number): void {
-            this.polyline = L.polyline([[latitude, longitude]]).addTo(this.map);
-        }
-
-        updateMarker(latitude: number, longitude: number): void {
-            this.marker.setLatLng([latitude, longitude]);
-        }
-
-        setLine(latitude: number, longitude: number): void {
-            this.polyline.setLatLngs([[latitude, longitude]]);
-        }
-
-        addLine(latitude: number, longitude: number): void {
-            this.polyline.addLatLng([latitude, longitude]);
         }
 
         createMap(latitude: number, longitude: number): void {
@@ -84,15 +65,14 @@
                 return;
             }
 
-            var updateMarker = this.updateMarker;
-            var setLine = this.setLine;
-            var addLine = this.addLine;
-
+            var marker = this.marker;
+            var polyline = this.polyline;
+          
             this.timer = setInterval(() => {
                 if (this.counter === 0) {
                     var position = this.positions[0];
-                    updateMarker(position.latitude, position.longitude);
-                    setLine(position.latitude, position.longitude);
+                    marker.setLatLng([position.latitude, position.longitude]);
+                    polyline.setLatLngs([[position.latitude, position.longitude]]);
                 }
 
                 if (this.counter > this.positions.length - 1) {
@@ -106,8 +86,8 @@
 
                 this.$scope.$apply(() => {
                     var position = this.positions[this.counter];
-                    updateMarker(position.latitude, position.longitude);
-                    addLine(position.latitude, position.longitude);
+                    marker.setLatLng([position.latitude, position.longitude]);
+                    polyline.addLatLng([position.latitude, position.longitude]);
                 });
             }, 2000);
         }
