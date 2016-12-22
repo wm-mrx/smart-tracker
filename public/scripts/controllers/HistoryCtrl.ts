@@ -71,6 +71,7 @@
             this.timer = setInterval(() => {
                 if (this.counter === 0) {
                     var position = this.positions[0];
+                    
                     marker.setLatLng([position.latitude, position.longitude]);
                     polyline.setLatLngs([[position.latitude, position.longitude]]);
                 }

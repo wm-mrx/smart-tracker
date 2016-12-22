@@ -1,6 +1,6 @@
 var SmartTracker;
 (function (SmartTracker) {
-    SmartTracker.smartTracker = angular.module('smartTracker', ['ui.router', 'angular-loading-bar', 'ui-notification', 'ui.bootstrap', 'bw.paging']);
+    SmartTracker.smartTracker = angular.module('smartTracker', ['ui.router', 'angular-loading-bar', 'ui-notification', 'ui.bootstrap', 'bw.paging', 'leaflet-directive']);
     var principal = ($q, $http, $timeout) => {
         var _identity = undefined;
         var _authenticated = false;
