@@ -48,6 +48,7 @@
     <Content Include="env.json" />
     <Content Include="public\css\app.css" />
     <Content Include="public\css\bootstrap.min.css" />
+    <Content Include="public\css\datetimepicker.css" />
     <Content Include="public\css\font-awesome.min.css" />
     <Content Include="public\css\google-font.css" />
     <Content Include="public\css\img\avatars\male.png" />
@@ -226,12 +227,17 @@
     <Folder Include="typings\validator\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="public\js\angular-leaflet-directive.js" />
     <Compile Include="public\js\angular-ui-notification.min.js" />
     <Compile Include="public\js\angular-ui-router.min.js" />
     <Compile Include="public\js\angular.min.js" />
     <Compile Include="public\js\bootstrap.js" />
+    <Compile Include="public\js\dateTimeInput.js" />
+    <Compile Include="public\js\datetimepicker.js" />
+    <Compile Include="public\js\datetimepicker.templates.js" />
     <Compile Include="public\js\jquery-1.10.2.js" />
     <Compile Include="public\js\loading-bar.js" />
+    <Compile Include="public\js\moment.js" />
     <Compile Include="public\js\ng-websocket.js" />
     <Compile Include="public\js\paging.min.js" />
     <Compile Include="public\js\socket.io.min.js" />

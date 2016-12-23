@@ -1,5 +1,12 @@
 ﻿module SmartTracker {
-    export var smartTracker = angular.module('smartTracker', ['ui.router', 'angular-loading-bar', 'ui-notification', 'ui.bootstrap', 'bw.paging', 'leaflet-directive']);
+    export var smartTracker = angular.module('smartTracker', ['ui.router',
+        'angular-loading-bar',
+        'ui-notification',
+        'ui.bootstrap',
+        'bw.paging',
+        'ui.bootstrap.datetimepicker',
+        'ui.dateTimeInput',
+        'leaflet-directive']);
     export var http: ng.IHttpService;
 
     var principal = ($q, $http, $timeout) => {
