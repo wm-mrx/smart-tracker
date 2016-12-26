@@ -50,6 +50,8 @@
             this.map = L.map('map', { center: L.latLng(latitude, longitude), zoom: 12, zoomControl: false });
             this.map.addControl(control);
             osm.addTo(this.map);
+
+            this.map.invalidateSize({ animate: true });
         }
 
         start(): void {

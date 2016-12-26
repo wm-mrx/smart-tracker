@@ -1,0 +1,238 @@
+﻿<section id="widget-grid">
+    <div class="row">
+        <article class="col-md-12">
+            <div class="jarviswidget" role="widget" ng-show="ctrl.showForm">
+                <header role="heading" data-block="header">
+                    <span class="widget-icon"> <i class="fa fa-users"></i></span>
+                    <h2>Client Input</h2>
+                    <div class="jarviswidget-ctrls" role="menu"></div>
+                </header>
+                <div role="content">
+                    <div class="jarviswidget-editbox"></div>
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar">
+                            <form class="smart-form">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                                First Name
+                                            </label>
+                                            <label class="input">
+                                                <input type="text" ng-model="ctrl.entity.firstName" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                                Last Name
+                                            </label>
+                                            <label class="input">
+                                                <input type="text" ng-model="ctrl.entity.lastName" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                                Passport Number
+                                            </label>
+                                            <label class="input">
+                                                <input type="text" ng-model="ctrl.entity.passportNo" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                               Address
+                                            </label>
+                                            <label class="input">
+                                                <input type="text" ng-model="ctrl.entity.address" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                                Phone
+                                            </label>
+                                            <label class="input">
+                                                <input type="text" ng-model="ctrl.entity.phone" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                                Device
+                                            </label>
+                                            <label class="input">
+                                                <input type="text"
+                                                       ng-model="ctrl.entity.device"
+                                                       placeholder="Device"
+                                                       uib-typeahead="data as data.serial for data in ctrl.queryDevice($viewValue)"
+                                                       typeahead-min-length="2"
+                                                       typeahead-loading="senderFilter" class="form-control" />
+                                                <i ng-show="senderFilter" class="glyphicon glyphicon-refresh"></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-6">
+                                            <label class="label">
+                                                Birth Place
+                                            </label>
+                                            <label class="input">
+                                                <input type="text" ng-model="ctrl.entity.birthPlace" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-6">
+                                            <label class="label">
+                                                Birth Date
+                                            </label>
+                                            <label class="input">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" data-ng-model="ctrl.entity.birthDate" data-date-time-input="YYYY-MM-DD">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <datetimepicker data-ng-model="ctrl.entity.birthDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                                                    </ul>
+                                                </div>
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-12">
+                                            <label class="label">
+                                                Registration Date
+                                            </label>
+                                            <label class="input">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" data-ng-model="ctrl.entity.registrationDate" data-date-time-input="YYYY-MM-DD">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <datetimepicker data-ng-model="ctrl.entity.registrationDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                                                    </ul>
+                                                </div>
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                                <footer>
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.cancelForm(false)">Cancel</button>
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.save()">Save</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jarviswidget" role="widget" ng-show="!ctrl.showForm">
+                <header role="heading" data-block="header">
+                    <span class="widget-icon">
+                        <i class="fa fa-users"></i>
+                    </span>
+                    <h2>Client</h2>
+                    <div class="jarviswidget-ctrls" role="menu">
+                        <a href="#" ng-click="ctrl.showToolbar = !ctrl.showToolbar"
+                           ng-show="ctrl.showToolbar" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="minimize">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                        <a href="#" ng-click="ctrl.showToolbar = !ctrl.showToolbar"
+                           ng-show="!ctrl.showToolbar" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="maximize">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox"></div>
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar" ng-show="ctrl.showToolbar">
+                            <form class="smart-form">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-sm-12 col-md-12 col-lg-4">
+                                            <label class="input">
+                                                <input type="text" placeholder="First Name" ng-model="ctrl.filters.firstName" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-4">
+                                            <label class="input">
+                                                <input type="text" placeholder="Last Name" ng-model="ctrl.filters.lastName" />
+                                            </label>
+                                        </section>
+                                        <section class="col col-sm-12 col-md-12 col-lg-4">
+                                            <label class="input">
+                                                <input type="text" placeholder="Passport" ng-model="ctrl.filters.passportNo" />
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="widget-body-toolbar">
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-5 col-md-5 col-lg-6">
+                                    <a href="#" class="btn btn-default" ng-show="ctrl.viewType == 1" style="color: black;" ng-click="ctrl.filter()">
+                                        <i class="fa fa-search"></i> Cari
+                                    </a>
+                                    <a href="#" class="btn btn-default" style="color: black;" ng-click="ctrl.add()">
+                                        <i class="fa fa-plus"></i> Tambah
+                                    </a>
+                                </div>
+                                <div class="col-xs-9 col-sm-5 col-md-5 col-lg-6">
+                                    <select name="dt_basic_length" aria-controls="dt_basic" class="form-control" ng-model="ctrl.paging.max"
+                                            ng-change="ctrl.filter()" style="float:right; width:15%;" to-number>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="500">500</option>
+                                        <option value="1000">1000</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-condensed table-striped table-hover smart-form">
+                                <thead>
+                                    <tr style="color:black;">
+                                        <th style="text-align: center; width: 7%;">Name</th>
+                                        <th style="text-align: center; width: 8%;">Address</th>
+                                        <th style="text-align: center; width: 12%;">Birth Date</th>
+                                        <th style="text-align: center; width: 10%;">Birth Place</th>
+                                        <th style="text-align: center; width: 5%;">Passport</th>
+                                        <th style="text-align: center; width:13%">Device</th>
+                                        <th style="text-align: center; width:8%;">Registration Date</th>
+                                        <th style="text-align: center; width: 8%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="entity in ctrl.entities" style="color:black;">
+                                        <td>{{entity.firstName}} {{entity.lastName}}</td>
+                                        <td>{{entity.address}}</td>
+                                        <td>{{entity.birthDate | date: 'yyyy-MM-dd'}}</td>
+                                        <td>{{entity.birthPlace}}</td>
+                                        <td>{{entity.passportNo}}</td>
+                                        <td>{{entity.device.serial}}</td>
+                                        <td>{{entity.registrationDate | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+                                        <td>
+                                            <a href="#" class="txt-color-white btn-sm btn-primary" title="Edit" ng-click="ctrl.edit(entity)">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </a>
+                                            &nbsp;
+                                            <a href="#" class="txt-color-white btn-sm btn-primary" title="Edit" ng-click="ctrl.delete(entity.id)">
+                                                <i class="fa fa-list"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

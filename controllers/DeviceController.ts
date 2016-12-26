@@ -16,6 +16,9 @@ class DeviceController extends BaseController<IDevice>{
         var where: sequelize.WhereOptions = {};
         var options: sequelize.FindOptions = { where: where, include: this.includes };
 
+        if (query['serial'])
+            where['serial'] = { $like: '%' + query['serial'] + '%' };
+
         if (query['limit'] && query['skip']) {
             options.limit = query['limit'];
             options.offset = query['skip'];

@@ -8,7 +8,6 @@ var SmartTracker;
                 this.$state = $state;
                 this.clients = [];
                 this.positions = [];
-                this.createMap(-6.24771, 106.9353617);
                 this.socket = io.connect(SmartTracker.socketUrl);
                 this.socket.emit('set clients', null);
                 this.socket.on('get clients', (data) => {
@@ -44,6 +43,7 @@ var SmartTracker;
                 var newPosition = new SmartTracker.Models.Position(data);
                 var exisitingPosition = this.getPosition(this.positions, newPosition.clientId);
                 if (!exisitingPosition) {
+                    this.createMap(-6.24771, 106.9353617);
                     var marker = this.createMarker(newPosition.latitude, newPosition.longitude);
                     newPosition.marker = marker.addTo(this.map);
                     newPosition.marker.openPopup();
@@ -77,6 +77,7 @@ var SmartTracker;
                 this.map = L.map('map', { center: L.latLng(latitude, longitude), zoom: 12, zoomControl: false });
                 this.map.addControl(control);
                 SmartTracker.osm.addTo(this.map);
+                this.map.invalidateSize({ animate: true });
             }
             positioning(client) {
                 this.socket.emit('positioning', client.device.serial);

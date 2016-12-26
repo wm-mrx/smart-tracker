@@ -23,6 +23,11 @@ class ClientController extends BaseController<IClient>{
         });
     }
 
+    save(data): Promise<boolean> {
+        data['deviceId'] = data['device']['id'];
+        return this.model.insertOrUpdate(data, { validate: true }); 
+    }
+
     applyQuery(query: any): any {
         var where: sequelize.WhereOptions = {};
         var options: sequelize.FindOptions = { where: where, include: this.includes };

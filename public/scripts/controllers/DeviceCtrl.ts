@@ -1,7 +1,7 @@
 ﻿module SmartTracker.Controllers {
-    class ClientCtrl {
-        entity: Models.IClient;
-        entities: Models.IClient[];
+    class DeviceCtrl {
+        entity: Models.IDevice;
+        entities: Models.IDevice[];
         showToolbar: boolean;
         showForm: boolean;
         filters: any;
@@ -25,8 +25,8 @@
         }
 
         load(): void {
-            Services.Client.FindAllAndCount(this.query).then(res => {
-                var rows = <Array<Models.IClient>>res.data['rows'];
+            Services.Device.FindAllAndCount(this.query).then(res => {
+                var rows = <Array<Models.IDevice>>res.data['rows'];
                 var count = res.data['count'];
 
                 this.entities = rows;
@@ -37,7 +37,7 @@
         }
 
         save(): void {
-            Services.Client.Save(this.entity).then(res => {
+            Services.Device.Save(this.entity).then(res => {
                 this.filter();
                 this.showForm = false;
             }).catch(exception => {
@@ -51,7 +51,7 @@
             if (!confirmed)
                 return;
 
-            Services.Client.Delete(id).then(res => {
+            Services.Device.Delete(id).then(res => {
                 this.filter();
             }).catch(exception => {
                 this.Notification.error(exception.data);
@@ -59,12 +59,12 @@
         }
 
         add(): void {
-            this.entity = new Models.Client(null);
+            this.entity = new Models.Device(null);
             this.showForm = true;
         }
 
-        edit(entity: Models.IClient): void {
-            this.entity = new Models.Client(entity);
+        edit(entity: Models.IDevice): void {
+            this.entity = new Models.Device(entity);
             this.showForm = true;
         }
 
@@ -89,13 +89,7 @@
             this.showForm = false;
             this.filter();
         }
-
-        queryDevice(query: string): any {
-            return Services.Device.FindAll({ serial: query }).then(res => {
-                return res.data;
-            });
-        }
     }
 
-    smartTracker.controller('ClientCtrl', ClientCtrl);
+    smartTracker.controller('DeviceCtrl', DeviceCtrl);
 }

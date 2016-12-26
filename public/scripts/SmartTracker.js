@@ -66,6 +66,10 @@ var SmartTracker;
                 url: SmartTracker.root,
                 templateUrl: SmartTracker.root + '/views/main.html',
                 controller: 'IndexCtrl as ctrl'
+            }).state('site.main.device', {
+                url: '/device',
+                templateUrl: SmartTracker.root + '/views/device.html',
+                controller: 'DeviceCtrl as ctrl'
             }).state('site.main.client', {
                 url: '/client',
                 templateUrl: SmartTracker.root + '/views/client.html',
@@ -144,6 +148,19 @@ var SmartTracker;
                     .error(function () { });
             };
         }]);
+    SmartTracker.smartTracker.directive('toNumber', () => {
+        return {
+            require: 'ngModel',
+            link: (scope, element, attrs, ngModel) => {
+                ngModel.$parsers.push((val) => {
+                    return parseFloat(val);
+                });
+                ngModel.$formatters.push((val) => {
+                    return '' + val;
+                });
+            }
+        };
+    });
     SmartTracker.smartTracker.factory('principal', ['$q', '$http', '$timeout', principal]);
     SmartTracker.smartTracker.factory('authorization', ['$rootScope', '$state', '$location', 'principal', authorization]);
     SmartTracker.smartTracker.run(['$rootScope', '$state', '$stateParams', 'authorization', 'principal', '$http', run]);

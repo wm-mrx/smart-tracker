@@ -42,6 +42,10 @@ app.get('/smartracker/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
+app.get('/smartracker/device', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
+
 app.get('/smartracker/client', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });

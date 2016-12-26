@@ -2,7 +2,7 @@ var SmartTracker;
 (function (SmartTracker) {
     var Controllers;
     (function (Controllers) {
-        class ClientCtrl {
+        class DeviceCtrl {
             constructor($scope, $state, Notification) {
                 this.$scope = $scope;
                 this.$state = $state;
@@ -19,7 +19,7 @@ var SmartTracker;
                 this.load();
             }
             load() {
-                SmartTracker.Services.Client.FindAllAndCount(this.query).then(res => {
+                SmartTracker.Services.Device.FindAllAndCount(this.query).then(res => {
                     var rows = res.data['rows'];
                     var count = res.data['count'];
                     this.entities = rows;
@@ -29,7 +29,7 @@ var SmartTracker;
                 });
             }
             save() {
-                SmartTracker.Services.Client.Save(this.entity).then(res => {
+                SmartTracker.Services.Device.Save(this.entity).then(res => {
                     this.filter();
                     this.showForm = false;
                 }).catch(exception => {
@@ -40,18 +40,18 @@ var SmartTracker;
                 var confirmed = confirm('Client will be deleted, are you sure?');
                 if (!confirmed)
                     return;
-                SmartTracker.Services.Client.Delete(id).then(res => {
+                SmartTracker.Services.Device.Delete(id).then(res => {
                     this.filter();
                 }).catch(exception => {
                     this.Notification.error(exception.data);
                 });
             }
             add() {
-                this.entity = new SmartTracker.Models.Client(null);
+                this.entity = new SmartTracker.Models.Device(null);
                 this.showForm = true;
             }
             edit(entity) {
-                this.entity = new SmartTracker.Models.Client(entity);
+                this.entity = new SmartTracker.Models.Device(entity);
                 this.showForm = true;
             }
             createQuery() {
@@ -71,14 +71,9 @@ var SmartTracker;
                 this.showForm = false;
                 this.filter();
             }
-            queryDevice(query) {
-                return SmartTracker.Services.Device.FindAll({ serial: query }).then(res => {
-                    return res.data;
-                });
-            }
         }
-        ClientCtrl.$inject = ['$scope', '$state', 'Notification'];
-        SmartTracker.smartTracker.controller('ClientCtrl', ClientCtrl);
+        DeviceCtrl.$inject = ['$scope', '$state', 'Notification'];
+        SmartTracker.smartTracker.controller('DeviceCtrl', DeviceCtrl);
     })(Controllers = SmartTracker.Controllers || (SmartTracker.Controllers = {}));
 })(SmartTracker || (SmartTracker = {}));
-//# sourceMappingURL=ClientCtrl.js.map
+//# sourceMappingURL=DeviceCtrl.js.map

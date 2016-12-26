@@ -15,6 +15,10 @@ class ClientController extends BaseController_1.default {
             });
         });
     }
+    save(data) {
+        data['deviceId'] = data['device']['id'];
+        return this.model.insertOrUpdate(data, { validate: true });
+    }
     applyQuery(query) {
         var where = {};
         var options = { where: where, include: this.includes };

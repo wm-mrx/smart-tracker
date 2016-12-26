@@ -10,6 +10,8 @@ class DeviceController extends BaseController_1.default {
     applyQuery(query) {
         var where = {};
         var options = { where: where, include: this.includes };
+        if (query['serial'])
+            where['serial'] = { $like: '%' + query['serial'] + '%' };
         if (query['limit'] && query['skip']) {
             options.limit = query['limit'];
             options.offset = query['skip'];

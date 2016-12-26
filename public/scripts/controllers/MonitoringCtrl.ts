@@ -12,8 +12,7 @@
         constructor(public $scope, public $state, Notification) {
             this.clients = [];
             this.positions = [];
-            this.createMap(-6.24771, 106.9353617);
-            
+ 
             this.socket = io.connect(socketUrl);
 
             this.socket.emit('set clients', null);
@@ -59,6 +58,8 @@
             var exisitingPosition = this.getPosition(this.positions, newPosition.clientId);
 
             if (!exisitingPosition) {
+                this.createMap(-6.24771, 106.9353617);
+
                 var marker = this.createMarker(newPosition.latitude, newPosition.longitude);
                 newPosition.marker = marker.addTo(this.map);
                 newPosition.marker.openPopup();
@@ -102,6 +103,7 @@
             this.map = L.map('map', { center: L.latLng(latitude, longitude), zoom: 12, zoomControl: false });
             this.map.addControl(control);
             osm.addTo(this.map);
+            this.map.invalidateSize({ animate: true });
         }
 
         positioning(client: Models.IClient): void {
